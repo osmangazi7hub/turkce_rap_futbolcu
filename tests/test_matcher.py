@@ -1,0 +1,189 @@
+import pytest
+
+from src.build_players import apply_rules, turkish_phonetic
+from src.matcher import Matcher, normalize
+
+
+def player(qid, full_name, known_as=(), surname=None, turkish=False, mononyms=()):
+    return {
+        "wikidata_id": qid, "full_name": full_name, "known_as": list(known_as),
+        "surname": surname, "leagues": [], "sitelinks": 50, "turkish": turkish,
+        "_mononyms": set(mononyms),
+    }
+
+
+WORDS = {"kaka", "kaya", "demir", "son", "saka", "pepe", "yilmaz", "turan", "kane", "sukur"}
+
+
+@pytest.fixture(scope="module")
+def pool():
+    players = [
+        player("Q1", "Diego Maradona", surname="Maradona"),
+        player("Q2", "Vincent Aboubakar", surname="Aboubakar"),
+        player("Q3", "Kalidou Koulibaly", surname="Koulibaly"),
+        player("Q4", "Yannick Carrasco", surname="Carrasco"),
+        player("Q5", "Adam Lallana", surname="Lallana"),
+        player("Q6", "Cristiano Ronaldo", surname="Ronaldo"),
+        player("Q7", "Ronaldo", known_as=["Ronaldo Nazário"], mononyms={"ronaldo"}),
+        player("Q8", "Filippo Inzaghi", surname="Inzaghi"),
+        player("Q9", "Simone Inzaghi", surname="Inzaghi"),
+        player("Q10", "Neymar", mononyms={"neymar"}),
+        player("Q11", "Edin Džeko", surname="Džeko"),
+        player("Q12", "João Cancelo", surname="Cancelo"),
+        player("Q13", "Hakan Şükür", surname="Şükür", turkish=True),
+        player("Q14", "Kaká", mononyms={"kaka"}),
+        player("Q15", "Suat Kaya", surname="Kaya", turkish=True),
+        player("Q16", "Harry Kane", surname="Kane"),
+        player("Q17", "Arda Turan", surname="Turan", turkish=True),
+        player("Q18", "Ronaldinho", mononyms={"ronaldinho"}),
+    ]
+    apply_rules(players, WORDS, min_surname_len=4)
+    return players
+
+
+@pytest.fixture(scope="module")
+def m(pool):
+    return Matcher(pool)
+
+
+def names(matcher, line):
+    return sorted(x.name for x in matcher.find(line))
+
+
+# --- normalizasyon -------------------------------------------------------- #
+
+@pytest.mark.parametrize("raw,expected", [
+    ("İNZAGHİ", "inzaghi"),
+    ("DZEKO'NUN", "dzeko'nun"),
+    ("Džeko", "dzeko"),
+    ("Şükür ılık çöğü", "sukur ilik cogu"),
+    ("Cancelo’yu", "cancelo'yu"),
+])
+def test_normalize(raw, expected):
+    assert normalize(raw) == expected
+
+
+def test_phonetic():
+    assert turkish_phonetic("Aboubakar") == "abubakar"
+    assert turkish_phonetic("Koulibaly") == "kulibali"
+    assert turkish_phonetic("Carrasco") == "karasko"
+    assert turkish_phonetic("Sneijder") == "snayder"
+
+
+# --- kesme işaretli ve kesmesiz ekler ------------------------------------- #
+
+@pytest.mark.parametrize("line,expected", [
+    ("Cancelo'yu geçtim sağ kanattan", ["João Cancelo"]),
+    ("Inzaghi'nin ofsayt çizgisi", []),                 # iki Inzaghi var -> soyad tek değil
+    ("Filippo Inzaghi'nin ofsayt çizgisi", ["Filippo Inzaghi"]),
+    ("Maradona gibi pas ver", ["Diego Maradona"]),
+    ("Maradonayı izledim", ["Diego Maradona"]),
+    ("Neymar'a selam söyle", ["Neymar"]),
+    ("Neymarlar gibi düşüyolar", ["Neymar"]),
+    ("Edin Dzeko'nun kafası", ["Edin Džeko"]),
+    ("DZEKO gibi uzun", ["Edin Džeko"]),
+    ("Hakan Sukurun golu", ["Hakan Şükür"]),
+    ("Ronaldinho'nun dansı", ["Ronaldinho"]),
+])
+def test_suffixes(m, line, expected):
+    assert names(m, line) == expected
+
+
+# --- Ati242 referans örnekleri (Türkçe okunuşla yazılmış halleri) --------- #
+
+@pytest.mark.parametrize("line,expected", [
+    ("Abubakar gibi bitiriş", ["Vincent Aboubakar"]),
+    ("Aboubakar'ın kafası", ["Vincent Aboubakar"]),
+    ("savunmada Kulibali", ["Kalidou Koulibaly"]),
+    ("Yannick Carrasco gibi çalım", ["Yannick Carrasco"]),
+    ("yanik karasko", ["Yannick Carrasco"]),
+    ("Lallana'yla ortada", ["Adam Lallana"]),
+    ("Lalana", ["Adam Lallana"]),
+])
+def test_ati242_examples(m, line, expected):
+    assert names(m, line) == expected
+
+
+# --- yanlış eşleşme olmamalı ---------------------------------------------- #
+
+@pytest.mark.parametrize("line", [
+    "kanepede yatıyorum",        # Kane + "pe" ek değil
+    "şükür ki buradayım",        # soyad tek başına değil, tam ad gerekli
+    "ite kaka gelemedik",        # Kaká Türkçe kelime -> belirsiz
+    "kaya gibi sağlam",          # Kaya Türkçe kelime
+    "Turan diyarı",              # Turan kelime listesinde
+    "messianik bir ses",         # kelime sınırı
+])
+def test_no_false_positives(m, line):
+    assert names(m, line) == []
+
+
+def test_ambiguous_flags(pool):
+    by = {p["wikidata_id"]: p for p in pool}
+    assert by["Q14"]["ambiguous"] and "kaka" in by["Q14"]["ambiguous_terms"]
+    assert by["Q15"]["ambiguous"]                     # Kaya
+    assert by["Q8"]["ambiguous"] and by["Q9"]["ambiguous"]   # iki Inzaghi
+    assert not by["Q1"]["ambiguous"]                  # Maradona tek ve kelime değil
+
+
+def test_ambiguous_mode_reports_them(pool):
+    m = Matcher(pool, include_ambiguous=True)
+    res = m.find("ite kaka gelemedik")
+    assert [r.name for r in res] == ["Kaká"] and res[0].ambiguous
+
+
+def test_ronaldo_full_name_beats_mononym(m):
+    # "Cristiano Ronaldo" geçince Ronaldo Nazário ayrıca sayılmaz
+    assert names(m, "Cristiano Ronaldo gibi") == ["Cristiano Ronaldo"]
+    # Tek başına "Ronaldo" iki oyuncuya da uyuyor ve ikisi de benzer ünlü -> belirsiz
+    assert names(m, "Ronaldo gibi") == []
+
+
+def test_dominant_surname():
+    players = [
+        {**player("Q1", "Lionel Messi", surname="Messi"), "sitelinks": 226},
+        {**player("Q2", "Georges Mbida Messi", surname="Messi"), "sitelinks": 5},
+        {**player("Q3", "Filippo Inzaghi", surname="Inzaghi"), "sitelinks": 60},
+        {**player("Q4", "Simone Inzaghi", surname="Inzaghi"), "sitelinks": 55},
+    ]
+    apply_rules(players, set(), min_surname_len=4)
+    m = Matcher(players)
+    assert names(m, "Messi'yi izledim") == ["Lionel Messi"]
+    assert names(m, "Inzaghi'nin golü") == []      # iki Inzaghi de eşit ünlü
+
+
+def test_exact_token_beats_suffix_stem():
+    players = [player("Q1", "Zinedine Zidane", surname="Zidane"),
+               player("Q2", "Muhammed Zidan", surname="Zidan")]
+    apply_rules(players, set(), min_surname_len=4)
+    m = Matcher(players)
+    assert names(m, "Zidane gibi kafa") == ["Zinedine Zidane"]
+    assert names(m, "Zidan'a pas") == ["Muhammed Zidan"]
+
+
+def test_murda_saliba():
+    players = [{**player("Q1", "William Saliba", surname="Saliba"), "sitelinks": 52},
+               {**player("Q2", "Nathan Saliba", surname="Saliba"), "sitelinks": 28}]
+    apply_rules(players, set(), min_surname_len=4)
+    assert names(Matcher(players), "Saliba, gunners") == ["William Saliba"]
+
+
+@pytest.mark.parametrize("line", ["Sokağım betondan", "bu melodim", "boykota gittik"])
+def test_common_word_prefix_not_split(line):
+    players = [player("Q1", "Beto Pimparel", surname="Beto"),
+               player("Q2", "Felipe Melo", surname="Melo"),
+               player("Q3", "Denys Boyko", surname="Boyko")]
+    apply_rules(players, set(), min_surname_len=4)
+    m = Matcher(players, common_words={"beton", "melodi", "boykot"})
+    assert names(m, line) == []
+    assert names(m, "Melo'yu gördüm") == ["Felipe Melo"]
+
+
+def test_highlight(m):
+    from src.matcher import highlight
+    line = "Yakışıyoruz tıpkı Wanda, Neymar'a (He)"
+    [hit] = m.find(line)
+    assert highlight(line, hit) == "Yakışıyoruz tıpkı Wanda, **Neymar'a** (He)"
+    line = "Sol kanatta YANNICK CARRASCO gibi"
+    [hit] = m.find(line)
+    assert highlight(line, hit) == "Sol kanatta **YANNICK CARRASCO** gibi"

@@ -1,0 +1,66 @@
+# Futbolcu havuzu ayarları (src/build_players.py)
+#
+# Havuz = dünyanın tüm zamanlardaki en bilinen N futbolcusu
+#       + Süper Lig'de oynamışların en bilinen M'si.
+# "Bilinirlik" = Wikidata sitelink sayısı (kaç dilde Wikipedia sayfası var).
+
+world_top:
+  n: 1000
+  min_sitelinks: 35   # sorguyu hızlandırmak için ön filtre
+  min_clubs: 3        # futbolu yan uğraş olanları (Camus, Niels Bohr) eler
+
+super_lig_top:
+  n: 500
+
+# Lig üyeliği verisi ("leagues" alanı) için kullanılan eşik; Süper Lig'de 0 = hepsi.
+sitelink_threshold: 15
+
+leagues:
+  super_lig:      {qid: Q485568, name: "Süper Lig",     sitelink_threshold: 0}
+  premier_league: {qid: Q9448,   name: "Premier League"}
+  first_division: {qid: Q754839, name: "Football League First Division"}  # 1992 öncesi İngiltere
+  la_liga:        {qid: Q324867, name: "La Liga"}
+  serie_a:        {qid: Q15804,  name: "Serie A"}
+  bundesliga:     {qid: Q82595,  name: "Bundesliga"}
+  ligue_1:        {qid: Q13394,  name: "Ligue 1"}
+  eredivisie:     {qid: Q167541, name: "Eredivisie"}
+  primeira_liga:  {qid: Q182994, name: "Primeira Liga"}
+
+# Wikidata'da lige bağlı görünmeyen ama eklenmesi gereken kulüpler (QID listesi).
+extra_clubs: {}
+#  super_lig: [Q12345]
+
+# Bir SPARQL sorgusunda kaç kulüp / kaç oyuncu birlikte sorgulanır.
+clubs_per_query: 8
+players_per_query: 250
+
+# Açık kaynak Türkçe kelime listesi (TDK tabanlı).
+turkish_wordlist_url: https://raw.githubusercontent.com/mertemin/turkish-word-list/master/words.txt
+
+# Tek başına soyad araması için minimum uzunluk (normalize edilmiş).
+min_surname_length: 4
+
+# Etiket/takma ad alınacak diller.
+label_languages: [mul, tr, en, es, pt, it, de, fr, nl]
+alias_languages: [mul, tr, en]
+
+# Aynı soyadı/lakabı paylaşan oyuncular arasında biri açık ara ünlüyse
+# (sitelink >= ratio x ikinci en ünlü ve >= min) o isim onun için aranır.
+# Örn. Messi (226) vs Mbida Messi (5), Maradona (175) vs Hugo Maradona (31).
+dominance_ratio: 1.8
+dominance_min_sitelinks: 30
+
+# Kelimeyle karışan isimleri ayıklama (OpenSubtitles sıklık listeleri, çekimli haller dahil).
+word_filter:
+  turkish_top: 50000            # en sık 50 bin Türkçe kelimeden biriyse tek başına aranmaz (vardı, durmaz, bunu)
+  foreign_languages: [en, de, nl, es, it, fr]
+  foreign_top: 15000            # yabancı dillerde en sık 15 bin (best, young, king, ferrari)
+  foreign_top_famous: 2000      # çok ünlülerde sınır daha dar: "messi" (it 2839) aranır
+  famous_sitelinks: 80
+  turkish_count_min: 40         # az bilinenlerde: tam Türkçe altyazı listesinde >= 40 geçiyorsa aranmaz (inler, akita)
+  # Argo, marka vb. elle engellenen tek kelimeler (çoklu isim olarak yine aranır)
+  blocked_terms: [sosa, alcantara, cocu, alaba, trapp, litti, hattori, lahm, bamba, ali dayi, atsu, miske, becks, unal, kopa, bellerin, sancho panza]
+
+# Havuzdan elle çıkarılanlar (futbol oynamış ama futbolcu olarak bilinmeyenler)
+exclude_ids:
+  - Q39259   # Recep Tayyip Erdoğan
