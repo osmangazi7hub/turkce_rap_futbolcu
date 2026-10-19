@@ -135,7 +135,8 @@ def test_ambiguous_mode_reports_them(pool):
 def test_ronaldo_full_name_beats_mononym(m):
     # "Cristiano Ronaldo" geçince Ronaldo Nazário ayrıca sayılmaz
     assert names(m, "Cristiano Ronaldo gibi") == ["Cristiano Ronaldo"]
-    assert names(m, "Ronaldo gibi") == ["Ronaldo"]
+    # Tek başına "Ronaldo" iki oyuncuya da uyuyor ve ikisi de benzer ünlü -> belirsiz
+    assert names(m, "Ronaldo gibi") == []
 
 
 def test_dominant_surname():

@@ -30,7 +30,6 @@
   "search_terms": [
    "lionel messi",
    "lionel mesi",
-   "la pulga",
    "leo messi",
    "leo mesi",
    "lionel andres messi cuccittini",
@@ -44,6 +43,7 @@
    "the little boy from rosario",
    "te litle boi from rosario",
    "messi",
+   "la pulga",
    "lm10",
    "leito"
   ],
@@ -118,12 +118,12 @@
   "search_terms": [
    "cristiano ronaldo",
    "cristiano ronaldo dos santos aveiro",
-   "el bicho",
-   "dos santos"
+   "el bicho"
   ],
   "ambiguous_terms": [
    "ronaldo",
-   "cr7"
+   "cr7",
+   "dos santos"
   ],
   "variants": [
    "Cristiano Ronaldo",
@@ -329,10 +329,10 @@
    "sir david beckham",
    "sir david bekham",
    "sir david robert joseph beckham",
-   "sir david robert josef bekham",
-   "becks"
+   "sir david robert josef bekham"
   ],
   "ambiguous_terms": [
+   "becks",
    "beks",
    "beckham",
    "bekham"
@@ -600,7 +600,6 @@
   "search_terms": [
    "franz beckenbauer",
    "franz bekenbauer",
-   "der kaiser",
    "beckenbauer franz anton albert",
    "bekenbauer franz anton albert",
    "f a beckenbauer",
@@ -613,6 +612,7 @@
    "franz anton albert bekenbauer",
    "franz anton beckenbauer",
    "franz anton bekenbauer",
+   "der kaiser",
    "beckenbauer",
    "bekenbauer"
   ],
@@ -3330,10 +3330,11 @@
   "tier": "S",
   "search_terms": [
    "philipp lahm",
-   "filip lahm",
+   "filip lahm"
+  ],
+  "ambiguous_terms": [
    "lahm"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Philipp Lahm",
    "philipp lahm",
@@ -3341,7 +3342,7 @@
    "Lahm",
    "lahm"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q43926",
@@ -4361,10 +4362,10 @@
   "search_terms": [
    "marcelo vieira",
    "marcelo da silva junior",
-   "marcelo vieira da silva junior",
-   "marcelo"
+   "marcelo vieira da silva junior"
   ],
   "ambiguous_terms": [
+   "marcelo",
    "vieira"
   ],
   "variants": [
@@ -4610,13 +4611,13 @@
    "mane garincha",
    "manuel francisco dos santos",
    "manuel francisko dos santos",
-   "garrincha",
-   "garincha",
    "garinca",
    "garinka",
+   "garincha",
    "garrinca"
   ],
   "ambiguous_terms": [
+   "garrincha",
    "dos santos"
   ],
   "variants": [
@@ -5281,11 +5282,12 @@
   "search_terms": [
    "robson de souza",
    "robson de suza",
-   "robinho",
+   "robinho"
+  ],
+  "ambiguous_terms": [
    "de souza",
    "de suza"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Robinho",
    "robinho",
@@ -5296,7 +5298,7 @@
    "de souza",
    "de suza"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q124086",
@@ -5353,10 +5355,11 @@
   "tier": "A",
   "search_terms": [
    "arturo vidal",
-   "arturo erasmo vidal pardo",
+   "arturo erasmo vidal pardo"
+  ],
+  "ambiguous_terms": [
    "vidal"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Arturo Vidal",
    "arturo vidal",
@@ -5365,7 +5368,7 @@
    "Vidal",
    "vidal"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q44298",
@@ -5817,11 +5820,11 @@
    "artur antunes koimbra ziko",
    "arthur zico",
    "artur ziko",
-   "zico",
    "coimbra",
    "koimbra"
   ],
   "ambiguous_terms": [
+   "zico",
    "ziko"
   ],
   "variants": [
@@ -5861,11 +5864,12 @@
   "tier": "A",
   "search_terms": [
    "alan shearer",
-   "alan searer",
+   "alan searer"
+  ],
+  "ambiguous_terms": [
    "shearer",
    "searer"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Alan Shearer",
    "alan shearer",
@@ -5874,7 +5878,7 @@
    "shearer",
    "searer"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q483846",
@@ -6585,17 +6589,18 @@
   "super_lig_rank": null,
   "tier": "A",
   "search_terms": [
-   "victor valdes",
+   "victor valdes"
+  ],
+  "ambiguous_terms": [
    "valdes"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Víctor Valdés",
    "victor valdes",
    "Valdés",
    "valdes"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q193706",
@@ -6724,10 +6729,10 @@
    "kevin keegan",
    "kevin kigan",
    "joseph kevin keegan",
-   "josef kevin kigan",
-   "keegan"
+   "josef kevin kigan"
   ],
   "ambiguous_terms": [
+   "keegan",
    "kigan"
   ],
   "variants": [
@@ -8376,10 +8381,11 @@
   "search_terms": [
    "christian eriksen",
    "christian dannemann eriksen",
-   "christian daneman eriksen",
+   "christian daneman eriksen"
+  ],
+  "ambiguous_terms": [
    "eriksen"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Christian Eriksen",
    "christian eriksen",
@@ -8389,7 +8395,7 @@
    "Eriksen",
    "eriksen"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q215890",
@@ -8730,11 +8736,12 @@
    "shinji kagawa",
    "sinji kagava",
    "kagawa shinji",
-   "kagava sinji",
+   "kagava sinji"
+  ],
+  "ambiguous_terms": [
    "kagawa",
    "kagava"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Shinji Kagawa",
    "shinji kagawa",
@@ -8747,7 +8754,7 @@
    "kagawa",
    "kagava"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1935",
@@ -9108,10 +9115,11 @@
   "tier": "A",
   "search_terms": [
    "shinji okazaki",
-   "sinji okazaki",
+   "sinji okazaki"
+  ],
+  "ambiguous_terms": [
    "okazaki"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Shinji Okazaki",
    "shinji okazaki",
@@ -9119,7 +9127,7 @@
    "Okazaki",
    "okazaki"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q349125",
@@ -9178,10 +9186,11 @@
    "diego p simeone",
    "diego pablo simeone",
    "diego pablo simeone gonzalez",
-   "cholo",
    "simeone"
   ],
-  "ambiguous_terms": [],
+  "ambiguous_terms": [
+   "cholo"
+  ],
   "variants": [
    "Diego Simeone",
    "diego simeone",
@@ -9200,7 +9209,7 @@
    "Diego Pablo Simeone González",
    "diego pablo simeone gonzalez"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q126503",
@@ -9372,11 +9381,11 @@
    "givanildo vieira de souza",
    "givanildo vieira de suza",
    "givanildo vieira de sousa",
-   "givanildo vieira de susa",
-   "sousa"
+   "givanildo vieira de susa"
   ],
   "ambiguous_terms": [
    "hulk",
+   "sousa",
    "susa"
   ],
   "variants": [
@@ -9468,11 +9477,12 @@
    "jens lehmann",
    "jens lehman",
    "jens gerhard lehmann",
-   "jens gerhard lehman",
+   "jens gerhard lehman"
+  ],
+  "ambiguous_terms": [
    "lehmann",
    "lehman"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Jens Lehmann",
    "jens lehmann",
@@ -9484,7 +9494,7 @@
    "lehmann",
    "lehman"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q13014035",
@@ -9839,11 +9849,12 @@
    "theo walcott",
    "teo valkot",
    "theo james walcott",
-   "teo james valkot",
+   "teo james valkot"
+  ],
+  "ambiguous_terms": [
    "walcott",
    "valkot"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Theo Walcott",
    "theo walcott",
@@ -9855,7 +9866,7 @@
    "walcott",
    "valkot"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q201381",
@@ -10591,10 +10602,11 @@
   "tier": "A",
   "search_terms": [
    "takashi inui",
-   "takasi inui",
+   "takasi inui"
+  ],
+  "ambiguous_terms": [
    "inui"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Takashi Inui",
    "takashi inui",
@@ -10602,7 +10614,7 @@
    "Inui",
    "inui"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q10526787",
@@ -11841,17 +11853,18 @@
   "super_lig_rank": null,
   "tier": "A",
   "search_terms": [
-   "roberto mancini",
+   "roberto mancini"
+  ],
+  "ambiguous_terms": [
    "mancini"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Roberto Mancini",
    "roberto mancini",
    "Mancini",
    "mancini"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1920",
@@ -11942,10 +11955,10 @@
    "thiago alcantara do nascimento",
    "tiago alkantara do nascimento",
    "thiago alcantara do nascimiento",
-   "tiago alkantara do nascimiento",
-   "thiago"
+   "tiago alkantara do nascimiento"
   ],
   "ambiguous_terms": [
+   "thiago",
    "tiago",
    "alcantara",
    "alkantara"
@@ -12539,10 +12552,11 @@
   "search_terms": [
    "martin odegaard",
    "martin odegard",
-   "odegaard",
+   "odegaard"
+  ],
+  "ambiguous_terms": [
    "odegard"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Martin Ødegaard",
    "martin odegaard",
@@ -12551,7 +12565,7 @@
    "odegaard",
    "odegard"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q701297",
@@ -13195,10 +13209,11 @@
   "search_terms": [
    "james milner",
    "james philip milner",
-   "james filip milner",
+   "james filip milner"
+  ],
+  "ambiguous_terms": [
    "milner"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "James Milner",
    "james milner",
@@ -13208,7 +13223,7 @@
    "Milner",
    "milner"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q331953",
@@ -13773,10 +13788,11 @@
   "tier": "B",
   "search_terms": [
    "socrates brasileiro sampaio de souza vieira de oliveira",
-   "socrates brasileiro sampaio de suza vieira de oliveira",
+   "socrates brasileiro sampaio de suza vieira de oliveira"
+  ],
+  "ambiguous_terms": [
    "socrates"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Sócrates",
    "socrates",
@@ -13784,7 +13800,7 @@
    "socrates brasileiro sampaio de souza vieira de oliveira",
    "socrates brasileiro sampaio de suza vieira de oliveira"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q271464",
@@ -14060,17 +14076,18 @@
   "super_lig_rank": null,
   "tier": "B",
   "search_terms": [
-   "atsuto uchida",
+   "atsuto uchida"
+  ],
+  "ambiguous_terms": [
    "uchida"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Atsuto Uchida",
    "atsuto uchida",
    "Uchida",
    "uchida"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q151838",
@@ -14368,11 +14385,12 @@
    "eiji kawashima",
    "ayi kavasima",
    "kawashima eiji",
-   "kavasima ayi",
+   "kavasima ayi"
+  ],
+  "ambiguous_terms": [
    "kawashima",
    "kavasima"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Eiji Kawashima",
    "eiji kawashima",
@@ -14384,7 +14402,7 @@
    "kawashima",
    "kavasima"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q514427",
@@ -14656,11 +14674,12 @@
    "el expreso de la coruna",
    "el ekspreso de la koruna",
    "lucas vazquez iglesias",
-   "lukas vazkez iglesias",
+   "lukas vazkez iglesias"
+  ],
+  "ambiguous_terms": [
    "vazquez",
    "vazkez"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Lucas Vázquez",
    "lucas vazquez",
@@ -14675,7 +14694,7 @@
    "vazquez",
    "vazkez"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q43304",
@@ -15027,12 +15046,12 @@
   "search_terms": [
    "vicente del bosque",
    "vicente del boske",
-   "del bosque",
-   "del boske",
    "v del bosque",
    "v del boske",
    "vicente del bosque gonzalez",
-   "vicente del boske gonzalez"
+   "vicente del boske gonzalez",
+   "del bosque",
+   "del boske"
   ],
   "ambiguous_terms": [
    "bosque",
@@ -15110,10 +15129,11 @@
   "tier": "B",
   "search_terms": [
    "alexander isak",
-   "aleksander isak",
+   "aleksander isak"
+  ],
+  "ambiguous_terms": [
    "isak"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Alexander Isak",
    "alexander isak",
@@ -15121,7 +15141,7 @@
    "Isak",
    "isak"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q138075",
@@ -15152,11 +15172,11 @@
    "alexandre rodrigues da silva",
    "aleksandre rodrigues da silva",
    "alexander pato",
-   "aleksander pato",
-   "rodrigues"
+   "aleksander pato"
   ],
   "ambiguous_terms": [
-   "pato"
+   "pato",
+   "rodrigues"
   ],
   "variants": [
    "Alexandre Pato",
@@ -15620,10 +15640,11 @@
    "francisko guilermo ochoa magana",
    "memo ochoa",
    "memorandum de paco",
-   "memorandum de pako",
+   "memorandum de pako"
+  ],
+  "ambiguous_terms": [
    "ochoa"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Guillermo Ochoa",
    "guillermo ochoa",
@@ -15642,7 +15663,7 @@
    "Ochoa",
    "ochoa"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q327456",
@@ -15699,12 +15720,12 @@
   "tier": "B",
   "search_terms": [
    "jadon sancho",
-   "sancho panza",
    "jadon giampiero boniperti sancho",
    "jadon malik sancho"
   ],
   "ambiguous_terms": [
-   "sancho"
+   "sancho",
+   "sancho panza"
   ],
   "variants": [
    "Jadon Sancho",
@@ -16030,10 +16051,11 @@
   "search_terms": [
    "rafael benitez",
    "rafa benitez",
-   "rafael benitez maudes",
+   "rafael benitez maudes"
+  ],
+  "ambiguous_terms": [
    "benitez"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Rafael Benítez",
    "rafael benitez",
@@ -16044,7 +16066,7 @@
    "Benítez",
    "benitez"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q30055335",
@@ -16207,10 +16229,10 @@
    "tiago mota",
    "bonomelli",
    "bonomeli",
-   "maifredi",
-   "motta"
+   "maifredi"
   ],
   "ambiguous_terms": [
+   "motta",
    "mota"
   ],
   "variants": [
@@ -17008,10 +17030,10 @@
    "marcus tulio lyuji murzani tanaka",
    "markus tulio lyuji murzani tanaka",
    "tanaka marcus tulio",
-   "tanaka markus tulio",
-   "tulio"
+   "tanaka markus tulio"
   ],
   "ambiguous_terms": [
+   "tulio",
    "tanaka"
   ],
   "variants": [
@@ -17417,10 +17439,11 @@
   "search_terms": [
    "takuma asano",
    "takuma ano",
-   "asano takuma",
+   "asano takuma"
+  ],
+  "ambiguous_terms": [
    "asano"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Takuma Asano",
    "takuma asano",
@@ -17431,7 +17454,7 @@
    "Asano",
    "asano"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q25253293",
@@ -18072,10 +18095,10 @@
    "henrik larsson",
    "henrik larson",
    "edward henrik larsson",
-   "edvard henrik larson",
-   "larsson"
+   "edvard henrik larson"
   ],
   "ambiguous_terms": [
+   "larsson",
    "larson"
   ],
   "variants": [
@@ -18622,12 +18645,12 @@
    "paul gaskoigne",
    "paul john gascoigne",
    "paul john gaskoigne",
-   "gazza",
-   "gascoigne",
-   "gaskoigne"
+   "gazza"
   ],
   "ambiguous_terms": [
-   "gaza"
+   "gaza",
+   "gascoigne",
+   "gaskoigne"
   ],
   "variants": [
    "Paul Gascoigne",
@@ -18965,10 +18988,11 @@
   "tier": "B",
   "search_terms": [
    "yoshito okubo",
-   "yosito okubo",
+   "yosito okubo"
+  ],
+  "ambiguous_terms": [
    "okubo"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Yoshito Okubo",
    "yoshito okubo",
@@ -18976,7 +19000,7 @@
    "Ōkubo",
    "okubo"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q170452",
@@ -18998,10 +19022,10 @@
   "search_terms": [
    "adriano leite ribeiro",
    "adriano imperador",
-   "adriano leite",
-   "adriano"
+   "adriano leite"
   ],
   "ambiguous_terms": [
+   "adriano",
    "leite"
   ],
   "variants": [
@@ -20299,11 +20323,12 @@
   "tier": "B",
   "search_terms": [
    "sven goran eriksson",
-   "sven goran erikson",
+   "sven goran erikson"
+  ],
+  "ambiguous_terms": [
    "eriksson",
    "erikson"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Sven-Göran Eriksson",
    "sven-goran eriksson",
@@ -20315,7 +20340,7 @@
    "eriksson",
    "erikson"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q27067753",
@@ -20512,11 +20537,12 @@
   "tier": "B",
   "search_terms": [
    "yoshikatsu kawaguchi",
-   "yosikatsu kavaguchi",
+   "yosikatsu kavaguchi"
+  ],
+  "ambiguous_terms": [
    "kawaguchi",
    "kavaguchi"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Yoshikatsu Kawaguchi",
    "yoshikatsu kawaguchi",
@@ -20525,7 +20551,7 @@
    "kawaguchi",
    "kavaguchi"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q184261",
@@ -20784,10 +20810,11 @@
   "search_terms": [
    "andreas christensen",
    "andreas bodtker christensen",
-   "elpepe",
+   "elpepe"
+  ],
+  "ambiguous_terms": [
    "christensen"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Andreas Christensen",
    "andreas christensen",
@@ -20798,7 +20825,7 @@
    "Christensen",
    "christensen"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q516921",
@@ -20940,17 +20967,18 @@
   "super_lig_rank": null,
   "tier": "B",
   "search_terms": [
-   "daisuke matsui",
+   "daisuke matsui"
+  ],
+  "ambiguous_terms": [
    "matsui"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Daisuke Matsui",
    "daisuke matsui",
    "Matsui",
    "matsui"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q15802",
@@ -21550,10 +21578,10 @@
    "jorge de amorim campos",
    "jorge de amorim kampos",
    "jorge de amorim campos oliveira",
-   "jorge de amorim kampos oliveira",
-   "jorginho"
+   "jorge de amorim kampos oliveira"
   ],
   "ambiguous_terms": [
+   "jorginho",
    "campos",
    "kampos"
   ],
@@ -21968,10 +21996,10 @@
    "peter crouch",
    "peter cruch",
    "peter james crouch",
-   "peter james cruch",
-   "crouch"
+   "peter james cruch"
   ],
   "ambiguous_terms": [
+   "crouch",
    "cruch"
   ],
   "variants": [
@@ -22006,10 +22034,11 @@
   "search_terms": [
    "raymond kopa",
    "raymond kopaszewski",
-   "raymond kopaszevski",
+   "raymond kopaszevski"
+  ],
+  "ambiguous_terms": [
    "kopa"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Raymond Kopa",
    "raymond kopa",
@@ -22019,7 +22048,7 @@
    "Kopa",
    "kopa"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q18394009",
@@ -22544,10 +22573,10 @@
   "tier": "C",
   "search_terms": [
    "danilo luiz da silva",
-   "danilo luiz",
-   "danilo"
+   "danilo luiz"
   ],
   "ambiguous_terms": [
+   "danilo",
    "da silva"
   ],
   "variants": [
@@ -23064,11 +23093,12 @@
    "hektor bellerin",
    "hektor belerin",
    "hector bellerin moruno",
-   "hector belerin moruno",
+   "hector belerin moruno"
+  ],
+  "ambiguous_terms": [
    "bellerin",
    "belerin"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Héctor Bellerín",
    "hector bellerin",
@@ -23083,7 +23113,7 @@
    "bellerin",
    "belerin"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q128719",
@@ -23297,17 +23327,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "kensuke nagai",
+   "kensuke nagai"
+  ],
+  "ambiguous_terms": [
    "nagai"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Kensuke Nagai",
    "kensuke nagai",
    "Nagai",
    "nagai"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q382269",
@@ -23476,11 +23507,12 @@
    "mark milligan",
    "mark miligan",
    "mark daniel milligan",
-   "mark daniel miligan",
+   "mark daniel miligan"
+  ],
+  "ambiguous_terms": [
    "milligan",
    "miligan"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Mark Milligan",
    "mark milligan",
@@ -23492,7 +23524,7 @@
    "milligan",
    "miligan"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q150921",
@@ -23538,17 +23570,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "masami ihara",
+   "masami ihara"
+  ],
+  "ambiguous_terms": [
    "ihara"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Masami Ihara",
    "masami ihara",
    "Ihara",
    "ihara"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q21195147",
@@ -23593,17 +23626,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "naoki matsuda",
+   "naoki matsuda"
+  ],
+  "ambiguous_terms": [
    "matsuda"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Naoki Matsuda",
    "naoki matsuda",
    "Matsuda",
    "matsuda"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q297603",
@@ -23849,24 +23883,23 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "ryoichi maeda",
+   "ryoichi maeda"
+  ],
+  "ambiguous_terms": [
    "maeda"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Ryoichi Maeda",
    "ryoichi maeda",
    "Maeda",
    "maeda"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q201900",
   "full_name": "Rüştü Reçber",
-  "known_as": [
-   "Rüştü"
-  ],
+  "known_as": [],
   "surname": "Reçber",
   "leagues": [
    "la_liga",
@@ -23879,15 +23912,12 @@
   "tier": "C",
   "search_terms": [
    "rustu recber",
-   "rustu",
    "recber"
   ],
   "ambiguous_terms": [],
   "variants": [
    "Rüştü Reçber",
    "rustu recber",
-   "Rüştü",
-   "rustu",
    "Reçber",
    "recber"
   ],
@@ -24361,11 +24391,12 @@
    "ander herera",
    "ander herrera aguera",
    "ander herera aguera",
-   "miau",
+   "miau"
+  ],
+  "ambiguous_terms": [
    "herrera",
    "herera"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Ander Herrera",
    "ander herrera",
@@ -24379,7 +24410,7 @@
    "herrera",
    "herera"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q15915040",
@@ -24405,10 +24436,10 @@
    "andy robertson",
    "andi robertson",
    "andrew henry robertson",
-   "andrev henri robertson",
-   "robbo"
+   "andrev henri robertson"
   ],
   "ambiguous_terms": [
+   "robbo",
    "robo",
    "robertson"
   ],
@@ -24606,11 +24637,12 @@
    "claudio miguel pizaro bosio",
    "el bombardero",
    "goleador historico",
-   "goleador historiko",
+   "goleador historiko"
+  ],
+  "ambiguous_terms": [
    "pizarro",
    "pizaro"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Claudio Pizarro",
    "claudio pizarro",
@@ -24627,7 +24659,7 @@
    "pizarro",
    "pizaro"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q352826",
@@ -24901,10 +24933,11 @@
    "fabio henrique tavares",
    "fabio henrike tavares",
    "fabinho tavares",
-   "fabinho",
    "tavares"
   ],
-  "ambiguous_terms": [],
+  "ambiguous_terms": [
+   "fabinho"
+  ],
   "variants": [
    "Fábio Tavares",
    "fabio tavares",
@@ -24918,7 +24951,7 @@
    "Tavares",
    "tavares"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q230046",
@@ -25521,10 +25554,11 @@
   "tier": "C",
   "search_terms": [
    "kisho yano",
-   "kiso yano",
+   "kiso yano"
+  ],
+  "ambiguous_terms": [
    "yano"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Kisho Yano",
    "kisho yano",
@@ -25532,7 +25566,7 @@
    "Yano",
    "yano"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1915",
@@ -25649,10 +25683,11 @@
    "lucimar ferreira da silva",
    "lucimar fereira da silva",
    "lucimar da silva ferreira",
-   "lucimar da silva fereira",
+   "lucimar da silva fereira"
+  ],
+  "ambiguous_terms": [
    "lucio"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Lúcio",
    "lucio",
@@ -25663,7 +25698,7 @@
    "lucimar da silva ferreira",
    "lucimar da silva fereira"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q3845710",
@@ -26370,17 +26405,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "yutaka akita",
+   "yutaka akita"
+  ],
+  "ambiguous_terms": [
    "akita"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Yutaka Akita",
    "yutaka akita",
    "Akita",
    "akita"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q29950055",
@@ -26680,17 +26716,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "bernd leno",
+   "bernd leno"
+  ],
+  "ambiguous_terms": [
    "leno"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Bernd Leno",
    "bernd leno",
    "Leno",
    "leno"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q99670930",
@@ -27157,11 +27194,12 @@
    "gabriel martinelli",
    "gabriel martineli",
    "gabriel teodoro martinelli silva",
-   "gabriel teodoro martineli silva",
+   "gabriel teodoro martineli silva"
+  ],
+  "ambiguous_terms": [
    "martinelli",
    "martineli"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Gabriel Martinelli",
    "gabriel martinelli",
@@ -27173,7 +27211,7 @@
    "martinelli",
    "martineli"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q202404",
@@ -27485,10 +27523,11 @@
   "tier": "C",
   "search_terms": [
    "hiroshi nanami",
-   "hirosi nanami",
+   "hirosi nanami"
+  ],
+  "ambiguous_terms": [
    "nanami"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Hiroshi Nanami",
    "hiroshi nanami",
@@ -27496,7 +27535,7 @@
    "Nanami",
    "nanami"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q276434",
@@ -27707,10 +27746,11 @@
    "jorge luiz frelo filho",
    "jorge luiz frello",
    "jorge luiz frelo",
-   "jorginho",
    "filho"
   ],
-  "ambiguous_terms": [],
+  "ambiguous_terms": [
+   "jorginho"
+  ],
   "variants": [
    "Jorginho",
    "jorginho",
@@ -27723,7 +27763,7 @@
    "Filho",
    "filho"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q3192187",
@@ -27770,17 +27810,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "kazuya yamamura",
+   "kazuya yamamura"
+  ],
+  "ambiguous_terms": [
    "yamamura"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Kazuya Yamamura",
    "kazuya yamamura",
    "Yamamura",
    "yamamura"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1091962",
@@ -28209,10 +28250,11 @@
   "tier": "C",
   "search_terms": [
    "norberto murara neto",
-   "neto murara",
+   "neto murara"
+  ],
+  "ambiguous_terms": [
    "neto"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Norberto Murara Neto",
    "norberto murara neto",
@@ -28221,7 +28263,7 @@
    "Neto Murara",
    "neto murara"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q96396963",
@@ -28242,10 +28284,11 @@
   "search_terms": [
    "nuno mendes",
    "nuno alexandre tavares mendes",
-   "nuno aleksandre tavares mendes",
+   "nuno aleksandre tavares mendes"
+  ],
+  "ambiguous_terms": [
    "mendes"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Nuno Mendes",
    "nuno mendes",
@@ -28255,7 +28298,7 @@
    "Mendes",
    "mendes"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q16235823",
@@ -28704,10 +28747,11 @@
    "maier josef dieter",
    "maier joseph dieter",
    "maier sep",
-   "s maier",
+   "s maier"
+  ],
+  "ambiguous_terms": [
    "maier"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Sepp Maier",
    "sepp maier",
@@ -28743,7 +28787,7 @@
    "S. Maier",
    "s. maier"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1195303",
@@ -28815,10 +28859,11 @@
   "tier": "C",
   "search_terms": [
    "takashi hirano",
-   "takasi hirano",
+   "takasi hirano"
+  ],
+  "ambiguous_terms": [
    "hirano"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Takashi Hirano",
    "takashi hirano",
@@ -28826,7 +28871,7 @@
    "Hirano",
    "hirano"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q240205",
@@ -28905,17 +28950,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "tomoaki makino",
+   "tomoaki makino"
+  ],
+  "ambiguous_terms": [
    "makino"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Tomoaki Makino",
    "tomoaki makino",
    "Makino",
    "makino"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q380696",
@@ -28931,10 +28977,11 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "tsuneyasu miyamoto",
+   "tsuneyasu miyamoto"
+  ],
+  "ambiguous_terms": [
    "miyamoto"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Tsuneyasu Miyamoto",
    "tsuneyasu miyamoto",
@@ -28942,7 +28989,7 @@
    "Miyamoto",
    "miyamoto"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q295637",
@@ -28997,10 +29044,11 @@
    "vincent abubakar",
    "vincent pate aboubakar",
    "vincent pate abubakar",
-   "aboubakar",
+   "aboubakar"
+  ],
+  "ambiguous_terms": [
    "abubakar"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Vincent Aboubakar",
    "vincent aboubakar",
@@ -29012,7 +29060,7 @@
    "aboubakar",
    "abubakar"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2360065",
@@ -29118,17 +29166,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "adrian mutu",
+   "adrian mutu"
+  ],
+  "ambiguous_terms": [
    "mutu"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Adrian Mutu",
    "adrian mutu",
    "Mutu",
    "mutu"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q380690",
@@ -29144,10 +29193,11 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "akira kaji",
+   "akira kaji"
+  ],
+  "ambiguous_terms": [
    "kaji"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Akira Kaji",
    "akira kaji",
@@ -29155,7 +29205,7 @@
    "Kaji",
    "kaji"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2464463",
@@ -29204,11 +29254,11 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "ali dayi",
    "ali daei"
   ],
   "ambiguous_terms": [
-   "dayi"
+   "dayi",
+   "ali dayi"
   ],
   "variants": [
    "Ali Dayi",
@@ -29480,17 +29530,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "brendan rodgers",
+   "brendan rodgers"
+  ],
+  "ambiguous_terms": [
    "rodgers"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Brendan Rodgers",
    "brendan rodgers",
    "Rodgers",
    "rodgers"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q186415",
@@ -29638,12 +29689,12 @@
    "darwin gabriel nunez ribeiro",
    "darvin gabriel nunez ribeiro",
    "darwin gabriel nunez ribero",
-   "darvin gabriel nunez ribero",
-   "nunez"
+   "darvin gabriel nunez ribero"
   ],
   "ambiguous_terms": [
    "darwin",
-   "darvin"
+   "darvin",
+   "nunez"
   ],
   "variants": [
    "Darwin Núñez",
@@ -30402,10 +30453,11 @@
   "tier": "C",
   "search_terms": [
    "julio salinas",
-   "julio salinas fernandez",
+   "julio salinas fernandez"
+  ],
+  "ambiguous_terms": [
    "salinas"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Julio Salinas",
    "julio salinas",
@@ -30414,7 +30466,7 @@
    "Salinas",
    "salinas"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q733509",
@@ -30428,17 +30480,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "jungo fujimoto",
+   "jungo fujimoto"
+  ],
+  "ambiguous_terms": [
    "fujimoto"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Jungo Fujimoto",
    "jungo fujimoto",
    "Fujimoto",
    "fujimoto"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1944",
@@ -30809,17 +30862,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "masato kudo",
+   "masato kudo"
+  ],
+  "ambiguous_terms": [
    "kudo"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Masato Kudo",
    "masato kudo",
    "Kudō",
    "kudo"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1919",
@@ -31102,17 +31156,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "nobuyuki kojima",
+   "nobuyuki kojima"
+  ],
+  "ambiguous_terms": [
    "kojima"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Nobuyuki Kojima",
    "nobuyuki kojima",
    "Kojima",
    "kojima"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2427349",
@@ -31200,10 +31255,11 @@
    "obafemi martins",
    "obafemi akinwunmi martins",
    "obafemi akinvunmi martins",
-   "oba oba martins",
+   "oba oba martins"
+  ],
+  "ambiguous_terms": [
    "martins"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Obafemi Martins",
    "obafemi martins",
@@ -31215,7 +31271,7 @@
    "Martins",
    "martins"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q19636859",
@@ -31404,10 +31460,11 @@
   "tier": "C",
   "search_terms": [
    "roberto ayala",
-   "roberto fabian ayala",
+   "roberto fabian ayala"
+  ],
+  "ambiguous_terms": [
    "ayala"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Roberto Ayala",
    "roberto ayala",
@@ -31416,7 +31473,7 @@
    "Ayala",
    "ayala"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q18817134",
@@ -31531,17 +31588,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "ryuichi sugiyama",
+   "ryuichi sugiyama"
+  ],
+  "ambiguous_terms": [
    "sugiyama"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Ryuichi Sugiyama",
    "ryuichi sugiyama",
    "Sugiyama",
    "sugiyama"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q21621168",
@@ -31619,11 +31677,12 @@
   "tier": "C",
   "search_terms": [
    "satoru yamagishi",
-   "satoru yamagisi",
+   "satoru yamagisi"
+  ],
+  "ambiguous_terms": [
    "yamagishi",
    "yamagisi"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Satoru Yamagishi",
    "satoru yamagishi",
@@ -31632,7 +31691,7 @@
    "yamagishi",
    "yamagisi"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q29624459",
@@ -31808,10 +31867,11 @@
   "tier": "C",
   "search_terms": [
    "shu kurata",
-   "su kurata",
+   "su kurata"
+  ],
+  "ambiguous_terms": [
    "kurata"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Shu Kurata",
    "shu kurata",
@@ -31819,7 +31879,7 @@
    "Kurata",
    "kurata"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q214734",
@@ -31966,17 +32026,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "takuya takagi",
+   "takuya takagi"
+  ],
+  "ambiguous_terms": [
    "takagi"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Takuya Takagi",
    "takuya takagi",
    "Takagi",
    "takagi"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1867444",
@@ -32118,11 +32179,12 @@
   "tier": "C",
   "search_terms": [
    "toshihiro hattori",
-   "tosihiro hatori",
+   "tosihiro hatori"
+  ],
+  "ambiguous_terms": [
    "hattori",
    "hatori"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Toshihiro Hattori",
    "toshihiro hattori",
@@ -32131,7 +32193,7 @@
    "hattori",
    "hatori"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1208340",
@@ -32489,11 +32551,12 @@
   "tier": "C",
   "search_terms": [
    "yu kobayashi",
-   "yu kobayasi",
+   "yu kobayasi"
+  ],
+  "ambiguous_terms": [
    "kobayashi",
    "kobayasi"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Yū Kobayashi",
    "yu kobayashi",
@@ -32502,7 +32565,7 @@
    "kobayashi",
    "kobayasi"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2805226",
@@ -33133,10 +33196,11 @@
   "tier": "C",
   "search_terms": [
    "ayase ueda",
-   "ueda ayase",
+   "ueda ayase"
+  ],
+  "ambiguous_terms": [
    "ueda"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Ayase Ueda",
    "ayase ueda",
@@ -33145,7 +33209,7 @@
    "Ueda",
    "ueda"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q21621029",
@@ -33591,11 +33655,12 @@
   "tier": "C",
   "search_terms": [
    "eisuke nakanishi",
-   "eisuke nakanisi",
+   "eisuke nakanisi"
+  ],
+  "ambiguous_terms": [
    "nakanishi",
    "nakanisi"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Eisuke Nakanishi",
    "eisuke nakanishi",
@@ -33604,7 +33669,7 @@
    "nakanishi",
    "nakanisi"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q31442",
@@ -33897,10 +33962,11 @@
   "tier": "C",
   "search_terms": [
    "gerardo martino",
-   "tata martino",
+   "tata martino"
+  ],
+  "ambiguous_terms": [
    "martino"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Gerardo Martino",
    "gerardo martino",
@@ -33909,7 +33975,7 @@
    "Martino",
    "martino"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q9354",
@@ -34097,11 +34163,12 @@
   "tier": "C",
   "search_terms": [
    "hideo hashimoto",
-   "hideo hasimoto",
+   "hideo hasimoto"
+  ],
+  "ambiguous_terms": [
    "hashimoto",
    "hasimoto"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Hideo Hashimoto",
    "hideo hashimoto",
@@ -34110,7 +34177,7 @@
    "hashimoto",
    "hasimoto"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1975426",
@@ -34125,10 +34192,11 @@
   "tier": "C",
   "search_terms": [
    "hisashi kurosaki",
-   "hisasi kurosaki",
+   "hisasi kurosaki"
+  ],
+  "ambiguous_terms": [
    "kurosaki"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Hisashi Kurosaki",
    "hisashi kurosaki",
@@ -34136,7 +34204,7 @@
    "Kurosaki",
    "kurosaki"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q467214",
@@ -34210,11 +34278,12 @@
    "javier aguirre",
    "javier aguire",
    "javier aguirre onaindia",
-   "javier aguire onaindia",
+   "javier aguire onaindia"
+  ],
+  "ambiguous_terms": [
    "aguirre",
    "aguire"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Javier Aguirre",
    "javier aguirre",
@@ -34226,7 +34295,7 @@
    "aguirre",
    "aguire"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q190651",
@@ -34250,10 +34319,11 @@
    "jerzy dudek",
    "jerzi dudek",
    "jerzy henryk dudek",
-   "jerzi henryk dudek",
+   "jerzi henryk dudek"
+  ],
+  "ambiguous_terms": [
    "dudek"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Jerzy Dudek",
    "jerzy dudek",
@@ -34264,7 +34334,7 @@
    "Dudek",
    "dudek"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q21913126",
@@ -34381,10 +34451,10 @@
   "search_terms": [
    "kamil glik",
    "kamil jacek glik",
-   "juventus",
    "glueck"
   ],
   "ambiguous_terms": [
+   "juventus",
    "gluek"
   ],
   "variants": [
@@ -34462,11 +34532,12 @@
   "tier": "C",
   "search_terms": [
    "kenta hasegawa",
-   "kenta hasegava",
+   "kenta hasegava"
+  ],
+  "ambiguous_terms": [
    "hasegawa",
    "hasegava"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Kenta Hasegawa",
    "kenta hasegawa",
@@ -34475,7 +34546,7 @@
    "hasegawa",
    "hasegava"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q467219",
@@ -35691,10 +35762,11 @@
   "tier": "C",
   "search_terms": [
    "shigetatsu matsunaga",
-   "sigetatsu matsunaga",
+   "sigetatsu matsunaga"
+  ],
+  "ambiguous_terms": [
    "matsunaga"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Shigetatsu Matsunaga",
    "shigetatsu matsunaga",
@@ -35702,7 +35774,7 @@
    "Matsunaga",
    "matsunaga"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q1976872",
@@ -35717,10 +35789,11 @@
   "tier": "C",
   "search_terms": [
    "shigeyoshi mochizuki",
-   "sigeyosi mochizuki",
+   "sigeyosi mochizuki"
+  ],
+  "ambiguous_terms": [
    "mochizuki"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Shigeyoshi Mochizuki",
    "shigeyoshi mochizuki",
@@ -35728,7 +35801,7 @@
    "Mochizuki",
    "mochizuki"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q294351",
@@ -35801,17 +35874,18 @@
   "super_lig_rank": null,
   "tier": "C",
   "search_terms": [
-   "sota hirayama",
+   "sota hirayama"
+  ],
+  "ambiguous_terms": [
    "hirayama"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Sota Hirayama",
    "sota hirayama",
    "Hirayama",
    "hirayama"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2573562",
@@ -36103,10 +36177,11 @@
   "tier": "C",
   "search_terms": [
    "toshiya fujita",
-   "tosiya fujita",
+   "tosiya fujita"
+  ],
+  "ambiguous_terms": [
    "fujita"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Toshiya Fujita",
    "toshiya fujita",
@@ -36114,7 +36189,7 @@
    "Fujita",
    "fujita"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q455161",
@@ -36475,11 +36550,12 @@
   "tier": "C",
   "search_terms": [
    "yosuke kashiwagi",
-   "yosuke kasivagi",
+   "yosuke kasivagi"
+  ],
+  "ambiguous_terms": [
    "kashiwagi",
    "kasivagi"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Yōsuke Kashiwagi",
    "yosuke kashiwagi",
@@ -36488,7 +36564,7 @@
    "kashiwagi",
    "kasivagi"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q509079",
@@ -38136,11 +38212,12 @@
    "mason greenwood",
    "mason grinvud",
    "mason will john greenwood",
-   "mason vil john grinvud",
+   "mason vil john grinvud"
+  ],
+  "ambiguous_terms": [
    "greenwood",
    "grinvud"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Mason Greenwood",
    "mason greenwood",
@@ -38152,7 +38229,7 @@
    "greenwood",
    "grinvud"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q204059",
@@ -38282,10 +38359,11 @@
   "tier": "SL",
   "search_terms": [
    "shoya nakajima",
-   "soya nakajima",
+   "soya nakajima"
+  ],
+  "ambiguous_terms": [
    "nakajima"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Shōya Nakajima",
    "shoya nakajima",
@@ -38293,7 +38371,7 @@
    "Nakajima",
    "nakajima"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q203665",
@@ -38432,10 +38510,10 @@
    "adriano correia",
    "adriano koreia",
    "adriano correia claro",
-   "adriano koreia claro",
-   "adriano"
+   "adriano koreia claro"
   ],
   "ambiguous_terms": [
+   "adriano",
    "correia",
    "koreia"
   ],
@@ -38845,10 +38923,11 @@
   "search_terms": [
    "antonio alberto bastos pimparel",
    "antonio alberto bastos",
-   "beto",
    "bastos"
   ],
-  "ambiguous_terms": [],
+  "ambiguous_terms": [
+   "beto"
+  ],
   "variants": [
    "António Alberto Bastos Pimparel",
    "antonio alberto bastos pimparel",
@@ -38859,7 +38938,7 @@
    "Bastos",
    "bastos"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q865680",
@@ -39075,10 +39154,10 @@
    "john carew",
    "john karev",
    "john alieu carew",
-   "john alieu karev",
-   "carew"
+   "john alieu karev"
   ],
   "ambiguous_terms": [
+   "carew",
    "karev"
   ],
   "variants": [
@@ -39242,10 +39321,11 @@
    "mbaye babacar niang",
    "mbaye babakar niang",
    "mbaye hamady niang",
-   "mbaye hamadi niang",
+   "mbaye hamadi niang"
+  ],
+  "ambiguous_terms": [
    "niang"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Mbaye Niang",
    "mbaye niang",
@@ -39259,7 +39339,7 @@
    "Niang",
    "niang"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q891520",
@@ -39676,10 +39756,11 @@
   "tier": "SL",
   "search_terms": [
    "brian steen nielsen",
-   "brian stin nielsen",
+   "brian stin nielsen"
+  ],
+  "ambiguous_terms": [
    "nielsen"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Brian Steen Nielsen",
    "brian steen nielsen",
@@ -39687,7 +39768,7 @@
    "Nielsen",
    "nielsen"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q377432",
@@ -39927,11 +40008,12 @@
   "tier": "SL",
   "search_terms": [
    "pavel horvath",
-   "pavel horvat",
+   "pavel horvat"
+  ],
+  "ambiguous_terms": [
    "horvath",
    "horvat"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Pavel Horváth",
    "pavel horvath",
@@ -39940,7 +40022,7 @@
    "horvath",
    "horvat"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q276402",
@@ -40104,10 +40186,11 @@
   "tier": "SL",
   "search_terms": [
    "zvjezdan misimovic",
-   "miske",
    "misimovic"
   ],
-  "ambiguous_terms": [],
+  "ambiguous_terms": [
+   "miske"
+  ],
   "variants": [
    "Zvjezdan Misimović",
    "zvjezdan misimovic",
@@ -40117,7 +40200,7 @@
    "misimovic",
    "Misimović"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q315282",
@@ -40318,10 +40401,11 @@
   "search_terms": [
    "christian atsu",
    "christian atsu twasam",
-   "christian atsu tvasam",
+   "christian atsu tvasam"
+  ],
+  "ambiguous_terms": [
    "atsu"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Christian Atsu",
    "christian atsu",
@@ -40331,7 +40415,7 @@
    "Atsu",
    "atsu"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2089098",
@@ -40499,10 +40583,11 @@
   "tier": "SL",
   "search_terms": [
    "eljero elia",
-   "eljero george rinaldo elia",
+   "eljero george rinaldo elia"
+  ],
+  "ambiguous_terms": [
    "elia"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Eljero Elia",
    "eljero elia",
@@ -40511,7 +40596,7 @@
    "Elia",
    "elia"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q22007007",
@@ -40632,11 +40717,12 @@
    "toni schuhmacher",
    "toni suhmacher",
    "harald anton schumacher",
-   "harald anton sumacher",
+   "harald anton sumacher"
+  ],
+  "ambiguous_terms": [
    "schumacher",
    "sumacher"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Harald Schumacher",
    "harald schumacher",
@@ -40654,7 +40740,7 @@
    "schumacher",
    "sumacher"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q54060",
@@ -41040,10 +41126,11 @@
   "search_terms": [
    "almir de souza fraga",
    "almir de suza fraga",
-   "almir",
+   "almir"
+  ],
+  "ambiguous_terms": [
    "fraga"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Almir",
    "almir",
@@ -41053,7 +41140,7 @@
    "Fraga",
    "fraga"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q2208497",
@@ -41076,11 +41163,11 @@
   "search_terms": [
    "celso borges",
    "celso borges mora",
-   "celsinho",
-   "borges"
+   "celsinho"
   ],
   "ambiguous_terms": [
-   "maleta"
+   "maleta",
+   "borges"
   ],
   "variants": [
    "Celso Borges",
@@ -41976,10 +42063,11 @@
   "tier": "SL",
   "search_terms": [
    "gokhan inler",
-   "goekhan inler",
+   "goekhan inler"
+  ],
+  "ambiguous_terms": [
    "inler"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Gökhan İnler",
    "gokhan inler",
@@ -41988,7 +42076,7 @@
    "Inler",
    "inler"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q965725",
@@ -42121,17 +42209,18 @@
   "super_lig_rank": 243,
   "tier": "SL",
   "search_terms": [
-   "marc janko",
+   "marc janko"
+  ],
+  "ambiguous_terms": [
    "janko"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Marc Janko",
    "marc janko",
    "Janko",
    "janko"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q13780454",
@@ -42314,10 +42403,10 @@
    "mahmoud hassan",
    "mahmud hasan",
    "mahmoud ahmed ibrahim hassan",
-   "mahmud ahmed ibrahim hasan",
-   "trezeguet"
+   "mahmud ahmed ibrahim hasan"
   ],
   "ambiguous_terms": [
+   "trezeguet",
    "hassan",
    "hasan"
   ],
@@ -43106,11 +43195,11 @@
    "mathias jorgensen",
    "matias jorgensen",
    "mathias jattah njie jorgensen",
-   "matias jatah njie jorgensen",
-   "jorgensen"
+   "matias jatah njie jorgensen"
   ],
   "ambiguous_terms": [
-   "zanka"
+   "zanka",
+   "jorgensen"
   ],
   "variants": [
    "Mathias Jørgensen",
@@ -43228,11 +43317,12 @@
   "tier": "SL",
   "search_terms": [
    "thomas berthold",
-   "tomas bertold",
+   "tomas bertold"
+  ],
+  "ambiguous_terms": [
    "berthold",
    "bertold"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Thomas Berthold",
    "thomas berthold",
@@ -43241,7 +43331,7 @@
    "berthold",
    "bertold"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q50628268",
@@ -43949,17 +44039,18 @@
   "super_lig_rank": 299,
   "tier": "SL",
   "search_terms": [
-   "atiba hutchinson",
+   "atiba hutchinson"
+  ],
+  "ambiguous_terms": [
    "hutchinson"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Atiba Hutchinson",
    "atiba hutchinson",
    "Hutchinson",
    "hutchinson"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q4830013",
@@ -44370,11 +44461,12 @@
    "kyle lafferty",
    "kyle laferti",
    "kyle joseph george lafferty",
-   "kyle josef george laferti",
+   "kyle josef george laferti"
+  ],
+  "ambiguous_terms": [
    "lafferty",
    "laferti"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Kyle Lafferty",
    "kyle lafferty",
@@ -44386,7 +44478,7 @@
    "lafferty",
    "laferti"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q213041",
@@ -44404,17 +44496,18 @@
   "super_lig_rank": 306,
   "tier": "SL",
   "search_terms": [
-   "morten gamst pedersen",
+   "morten gamst pedersen"
+  ],
+  "ambiguous_terms": [
    "pedersen"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Morten Gamst Pedersen",
    "morten gamst pedersen",
    "Pedersen",
    "pedersen"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q18062338",
@@ -44803,10 +44896,10 @@
    "kenet anderson",
    "kenneth andersson",
    "bernt kennet andersson",
-   "bernt kenet anderson",
-   "andersson"
+   "bernt kenet anderson"
   ],
   "ambiguous_terms": [
+   "andersson",
    "anderson"
   ],
   "variants": [
@@ -45243,10 +45336,10 @@
   "tier": "SL",
   "search_terms": [
    "sebastien frey",
-   "sebastien fri",
-   "frey"
+   "sebastien fri"
   ],
   "ambiguous_terms": [
+   "frey",
    "fri"
   ],
   "variants": [
@@ -45936,10 +46029,11 @@
    "max kruse",
    "maks kruse",
    "max bennet kruse",
-   "maks benet kruse",
+   "maks benet kruse"
+  ],
+  "ambiguous_terms": [
    "kruse"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Max Kruse",
    "max kruse",
@@ -45950,7 +46044,7 @@
    "Kruse",
    "kruse"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q17523896",
@@ -46093,10 +46187,11 @@
   "tier": "SL",
   "search_terms": [
    "reto ziegler",
-   "reto pirmin ziegler",
+   "reto pirmin ziegler"
+  ],
+  "ambiguous_terms": [
    "ziegler"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Reto Ziegler",
    "reto ziegler",
@@ -46105,7 +46200,7 @@
    "Ziegler",
    "ziegler"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q7381020",
@@ -46179,10 +46274,11 @@
   "search_terms": [
    "sol bamba",
    "souleymane bamba",
-   "suleymane bamba",
+   "suleymane bamba"
+  ],
+  "ambiguous_terms": [
    "bamba"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Sol Bamba",
    "sol bamba",
@@ -46192,7 +46288,7 @@
    "Bamba",
    "bamba"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q315327",
@@ -47188,10 +47284,10 @@
    "vincent janssen",
    "vincent jansen",
    "vincent petrus anna sebastiaan janssen",
-   "vincent petrus ana sebastian jansen",
-   "janssen"
+   "vincent petrus ana sebastian jansen"
   ],
   "ambiguous_terms": [
+   "janssen",
    "jansen"
   ],
   "variants": [
@@ -48437,17 +48533,18 @@
   "super_lig_rank": 417,
   "tier": "SL",
   "search_terms": [
-   "enes unal",
+   "enes unal"
+  ],
+  "ambiguous_terms": [
    "unal"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Enes Ünal",
    "enes unal",
    "Ünal",
    "unal"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q334484",
@@ -49364,11 +49461,11 @@
    "cristiano marques gomes",
    "cristiano markes gomes",
    "cristiano marques gomez",
-   "cristiano markes gomez",
-   "gomes"
+   "cristiano markes gomez"
   ],
   "ambiguous_terms": [
-   "cris"
+   "cris",
+   "gomes"
   ],
   "variants": [
    "Cristiano Marques Gomes",
@@ -49509,11 +49606,12 @@
    "gustav svensson",
    "gustav svenson",
    "karl gustav johan svensson",
-   "karl gustav johan svenson",
+   "karl gustav johan svenson"
+  ],
+  "ambiguous_terms": [
    "svensson",
    "svenson"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Gustav Svensson",
    "gustav svensson",
@@ -49525,7 +49623,7 @@
    "svensson",
    "svenson"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q259179",
@@ -49575,10 +49673,11 @@
    "nathan redmond",
    "natan redmond",
    "nathan daniel jerome redmond",
-   "natan daniel jerome redmond",
+   "natan daniel jerome redmond"
+  ],
+  "ambiguous_terms": [
    "redmond"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Nathan Redmond",
    "nathan redmond",
@@ -49589,7 +49688,7 @@
    "Redmond",
    "redmond"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q63344470",
@@ -49658,17 +49757,18 @@
   "super_lig_rank": 457,
   "tier": "SL",
   "search_terms": [
-   "radosav petrovic",
+   "radosav petrovic"
+  ],
+  "ambiguous_terms": [
    "petrovic"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Radosav Petrović",
    "radosav petrovic",
    "Petrović",
    "petrovic"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q72886",
@@ -50113,10 +50213,10 @@
   "tier": "SL",
   "search_terms": [
    "eduardo goncalves de oliveira",
-   "eduardo gonkalves de oliveira",
-   "edu"
+   "eduardo gonkalves de oliveira"
   ],
   "ambiguous_terms": [
+   "edu",
    "goncalves",
    "gonkalves"
   ],
@@ -50701,10 +50801,10 @@
    "majeed waris",
    "majid varis",
    "waris majeed",
-   "varis majid",
-   "waris"
+   "varis majid"
   ],
   "ambiguous_terms": [
+   "waris",
    "varis"
   ],
   "variants": [
@@ -51110,10 +51210,10 @@
   "search_terms": [
    "raimond aumann",
    "raimond auman",
-   "balu",
    "aumann"
   ],
   "ambiguous_terms": [
+   "balu",
    "auman"
   ],
   "variants": [
@@ -51146,10 +51246,11 @@
   "tier": "SL",
   "search_terms": [
    "roberto hilbert",
-   "roberto jan hilbert",
+   "roberto jan hilbert"
+  ],
+  "ambiguous_terms": [
    "hilbert"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Roberto Hilbert",
    "roberto hilbert",
@@ -51158,7 +51259,7 @@
    "Hilbert",
    "hilbert"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "Q14948183",
@@ -51358,10 +51459,11 @@
   "tier": "M",
   "search_terms": [
    "metin oktay",
-   "tacsiz kral",
+   "tacsiz kral"
+  ],
+  "ambiguous_terms": [
    "oktay"
   ],
-  "ambiguous_terms": [],
   "variants": [
    "Metin Oktay",
    "metin oktay",
@@ -51370,7 +51472,7 @@
    "Oktay",
    "oktay"
   ],
-  "ambiguous": false
+  "ambiguous": true
  },
  {
   "wikidata_id": "manual:turgay_seren",

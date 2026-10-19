@@ -57,8 +57,9 @@ word_filter:
   foreign_top: 15000            # yabancı dillerde en sık 15 bin (best, young, king, ferrari)
   foreign_top_famous: 2000      # çok ünlülerde sınır daha dar: "messi" (it 2839) aranır
   famous_sitelinks: 80
+  turkish_count_min: 40         # az bilinenlerde: tam Türkçe altyazı listesinde >= 40 geçiyorsa aranmaz (inler, akita)
   # Argo, marka vb. elle engellenen tek kelimeler (çoklu isim olarak yine aranır)
-  blocked_terms: [sosa, alcantara, cocu, alaba, trapp, litti]
+  blocked_terms: [sosa, alcantara, cocu, alaba, trapp, litti, hattori, lahm, bamba, ali dayi, atsu, miske, becks, unal, kopa, bellerin, sancho panza]
 
 # Havuzdan elle çıkarılanlar (futbol oynamış ama futbolcu olarak bilinmeyenler)
 exclude_ids:

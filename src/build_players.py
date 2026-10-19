@@ -196,6 +196,23 @@ def load_frequency(lang: str, top: int) -> dict[str, int]:
     return ranks
 
 
+def load_frequency_counts(lang: str) -> dict[str, int]:
+    """Tam sıklık listesi (tr_full, ~2M kelime): kelime -> geçiş sayısı."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    path = CACHE / f"freq_{lang}_full.txt"
+    if not path.exists():
+        url = FREQ_URL.format(lang=lang).replace(f"{lang}_50k", f"{lang}_full")
+        r = session.get(url, timeout=300)
+        r.raise_for_status()
+        path.write_text(r.text, encoding="utf-8")
+    counts: dict[str, int] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        w, _, n = line.partition(" ")
+        w = normalize(w).replace("'", "")
+        counts[w] = counts.get(w, 0) + int(n or 0)
+    return counts
+
+
 def build_record(pid: str, info: dict, leagues: set[str], sitelinks: int) -> dict | None:
     labels: dict[str, str] = info["labels"]
     full_name = next((labels[l] for l in ("tr", "en", "mul") if l in labels), None) \
@@ -225,10 +242,20 @@ def build_record(pid: str, info: dict, leagues: set[str], sitelinks: int) -> dic
     }
 
 
+PARTICLES = {"de", "da", "do", "dos", "das", "di", "du", "del", "della", "la", "le", "van", "von", "der"}
+
+
+def particle_name(name: str) -> bool:
+    """"de Souza", "da Silva", "van Dijk" gibi edat + tek kelime."""
+    toks = tokenize_term(name)
+    return len(toks) == 2 and toks[0] in PARTICLES
+
+
 def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
                 dominance_ratio: float = 1.8, dominance_min_sitelinks: int = 30,
                 foreign: dict[str, int] | None = None, foreign_top: int = 15000,
-                foreign_top_famous: int = 2000, famous_sitelinks: int = 80) -> None:
+                foreign_top_famous: int = 2000, famous_sitelinks: int = 80,
+                tr_counts: dict[str, int] | None = None, tr_count_min: int = 40) -> None:
     """search_terms / ambiguous_terms / variants / ambiguous alanlarını doldurur.
 
     words:   Türkçe kelimeler (TDK + sık kullanılan çekimli haller) -> tek başına aranmaz.
@@ -237,9 +264,13 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
              ("messi" İtalyanca'da 2839. kelime ama Messi aranır; "best" aranmaz).
     """
     foreign = foreign or {}
+    tr_counts = tr_counts or {}
 
     def is_word(form: str, famous: bool) -> bool:
         if form in words:
+            return True
+        # Az bilinenlerde: Türkçe altyazılarda sık geçiyorsa kelimedir (inler, akita, hattori)
+        if not famous and tr_counts.get(form, 0) >= tr_count_min:
             return True
         rank = foreign.get(form)
         return rank is not None and rank <= (foreign_top_famous if famous else foreign_top)
@@ -249,7 +280,7 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
         if p["surname"]:
             out.add(" ".join(tokenize_term(p["surname"])))
         for k in p["known_as"]:
-            if len(tokenize_term(k)) == 1:
+            if len(tokenize_term(k)) == 1 or particle_name(k):
                 out.add(" ".join(tokenize_term(k)))
         return out
 
@@ -294,27 +325,32 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
                 if f and f not in search and f not in lst:
                     lst.append(f)
 
-        # 1) Tam ad ve çok kelimeli takma adlar: her zaman
+        # 1) Tam ad ve çok kelimeli takma adlar: her zaman.
+        # "de Souza", "da Silva" gibi edatla başlayan iki kelimelik adlar soyad gibi
+        # değerlendirilir (aşağıda benzersizlik kuralına girer).
         if len(tokenize_term(p["full_name"])) >= 2:
             add(search, p["full_name"])
         for k in p["known_as"]:
-            if len(tokenize_term(k)) >= 2:
+            if len(tokenize_term(k)) >= 2 and not particle_name(k):
                 add(search, k)
 
         # 2) Tek kelimelik isimler
         surname_norm = " ".join(tokenize_term(p["surname"])) if p["surname"] else None
-        singles = [k for k in [p["full_name"], *p["known_as"]] if len(tokenize_term(k)) == 1]
+        singles = [k for k in [p["full_name"], *p["known_as"]]
+                   if len(tokenize_term(k)) == 1 or particle_name(k)]
         if p["surname"] and p["surname"] not in singles:
             singles.append(p["surname"])
         famous = (p["sitelinks"] or 0) >= famous_sitelinks
         for name in singles:
             t = " ".join(tokenize_term(name))
             is_mononym = t in p["_mononyms"] and t != surname_norm
-            if is_mononym:
-                ok = not is_word(t, famous) and len(t) >= 3           # Ronaldinho, Kaká
-            else:
-                ok = (not is_word(t, famous) and len(t) >= min_surname_len
+            if is_mononym:                                            # Ronaldinho, Kaká
+                ok = (not is_word(t, famous) and len(t) >= 3
                       and (counts[t] == 1 or dominant(t, p)))
+            else:
+                # Edatlı adlarda ("de Souza") baskınlık yok: birden çok kişide varsa aranmaz
+                ok = (not is_word(t, famous) and len(t.replace(" ", "")) >= min_surname_len
+                      and (counts[t] == 1 or (not particle_name(name) and dominant(t, p))))
             # Türkçe okunuş varyantı ayrıca kontrol edilir: Bounou -> "bunu",
             # Vardy -> "vardi" kelime olduğu için yalnızca orijinal yazım aranır.
             for j, f in enumerate(term_forms(name, tr)):
@@ -333,6 +369,9 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
                 if v and v not in variants:
                     variants.append(v)
 
+        # Engellenen çok kelimeli ifadeler ("ali dayi" = "Ali Dayı", günlük hitap)
+        ambiguous += [t for t in search if " " in t and t in words]
+        search = [t for t in search if not (" " in t and t in words)]
         p["search_terms"] = search
         p["ambiguous_terms"] = [a for a in ambiguous if a not in search]
         p["variants"] = variants
@@ -528,7 +567,8 @@ def main() -> None:
     words |= blocked
     apply_rules(players, words, cfg["min_surname_length"],
                 cfg["dominance_ratio"], cfg["dominance_min_sitelinks"],
-                foreign, wf["foreign_top"], wf["foreign_top_famous"], wf["famous_sitelinks"])
+                foreign, wf["foreign_top"], wf["foreign_top_famous"], wf["famous_sitelinks"],
+                load_frequency_counts("tr"), wf["turkish_count_min"])
     # Eşleştiricinin ek soymayacağı yaygın Türkçe kelimeler ("melodi" != Melo + di)
     COMMON_WORDS.write_text("\n".join(sorted(load_frequency("tr", 50000))) + "\n",
                             encoding="utf-8")

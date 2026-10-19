@@ -2,7 +2,11 @@
 
 Türkçe rap şarkı sözlerinde geçen futbolcu isimlerini bulan Python projesi.
 
-> Bu aşama: proje iskeleti + **futbolcu havuzu** + eşleştirici. Şarkı sözü çekme (Genius vb.) sonraki adım.
+Adımlar:
+1. `python -m src.build_players` → futbolcu havuzu (`data/players.json`)
+2. `data/artists.txt` → taranacak rapçiler (Deezer ID'leriyle)
+3. `python -m src.fetch_lyrics` → şarkı listesi Deezer'dan, sözler LRCLIB'den (`data/lyrics/`, git'e girmez; kapsama: `results/lyrics_coverage.csv`)
+4. `python -m src.scan` → `results/matches.csv` (her eşleşen satır) ve `results/summary.md` (özet)
 
 ## Yapı
 
@@ -10,6 +14,10 @@ Türkçe rap şarkı sözlerinde geçen futbolcu isimlerini bulan Python projesi
 config.yaml            # ligler, sitelink eşiği, yıl sınırı vb.
 src/build_players.py   # Wikidata SPARQL -> data/players.json
 src/matcher.py         # Türkçe normalizasyon + ek duyarlı eşleştirme
+src/fetch_lyrics.py    # Deezer + LRCLIB -> data/lyrics/
+src/scan.py            # sözlerde futbolcu tarama -> results/
+data/artists.txt       # rapçi listesi
+data/common_words_tr.txt # eke ayrılmayacak yaygın Türkçe kelimeler
 data/players.json      # futbolcu havuzu (üretilen)
 data/manual_players.csv# 1970 öncesi efsaneler gibi elle eklenenler (Lefter, Metin Oktay, Pelé…)
 data/manual_aliases.csv# elle lakap ekle/sil (Tanju, Rüştü, Alex…)
@@ -62,7 +70,9 @@ pytest
 4. Diğerleri `ambiguous_terms`'e düşer (ör. *Kaká* → "kaka", *Suat Kaya* → "kaya", iki Inzaghi olduğu için "Inzaghi").
 5. `data/manual_aliases.csv` ile eklenen lakaplar kurallardan bağımsız her zaman aranır; hatalı Wikidata takma adları silinebilir.
 6. Kadın futbolcular çıkarılır (bazı lig öğeleri kadın liglerini de kapsıyor).
-7. Yabancı isimlere Türkçe okunuş varyantı eklenir: Koulibaly → *kulibali*, Carrasco → *karasko*, Sneijder → *snayder*.
+7. **Kelime filtresi** (`config.yaml` → `word_filter`): OpenSubtitles sıklık listeleriyle kelimeye benzeyen isimler tek başına aranmaz — Türkçe en sık 50 bin (vardı, durmaz, bunu), en/de/nl/es/it/fr en sık 15 bin (best, young, king; çok ünlülerde 2 bin, böylece "messi" aranır), az bilinenlerde Türkçe altyazılarda ≥ 40 geçenler (inler, akita). Yaygın Türkçe kelimeler eke ayrılmaz ("melodi" ≠ Melo + di, "betondan" ≠ Beto + ndan). Elle engellenenler: `blocked_terms`.
+8. Edatlı adlar ("de Souza", "da Silva") soyad gibi değerlendirilir; birden çok kişide varsa aranmaz.
+9. Yabancı isimlere Türkçe okunuş varyantı eklenir: Koulibaly → *kulibali*, Carrasco → *karasko*, Sneijder → *snayder* (tek kelimede yalnızca 6+ harfli olanlar).
 
 ### Eşleştirici
 

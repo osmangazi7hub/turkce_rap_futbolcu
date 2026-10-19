@@ -36,6 +36,10 @@ SUFFIXES = [
 SUFFIX_RE = re.compile("(?:" + "|".join(SUFFIXES) + ")")
 MAX_SUFFIX_LEN = 7
 
+LETTER_FIX = str.maketrans({"ß": "ss", "ø": "o", "æ": "ae", "đ": "d", "ł": "l", "œ": "oe",
+                            "ɡ": "g", "ᴢ": "z", "ɩ": "l", "ᴜ": "u", "ᴏ": "o", "ᴀ": "a",
+                            "ʀ": "r", "ɪ": "i", "ɴ": "n", "ᴍ": "m", "ᴛ": "t", "ᴇ": "e"})
+
 TOKEN_RE = re.compile(r"[a-z0-9]+(?:'[a-z]*)?")
 
 
@@ -47,8 +51,8 @@ def normalize(text: str) -> str:
     text = "".join(c for c in text if not unicodedata.combining(c))
     for a in APOSTROPHES:
         text = text.replace(a, "'")
-    # ß, ø, æ, đ gibi ayrışmayan harfler
-    return text.translate(str.maketrans({"ß": "ss", "ø": "o", "æ": "ae", "đ": "d", "ł": "l", "œ": "oe"}))
+    # ß, ø, æ, đ gibi ayrışmayan harfler + sözlerde görülen süslü Unicode harfler (ɡ, ᴢ, Ɩ)
+    return text.translate(LETTER_FIX)
 
 
 def tokenize_term(term: str) -> tuple[str, ...]:
