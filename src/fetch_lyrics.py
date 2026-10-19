@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import csv
 import json
+import random
 import re
 import sys
 import time
@@ -28,14 +29,15 @@ ARTISTS = ROOT / "data" / "artists.txt"
 LYRICS = ROOT / "data" / "lyrics"
 COVERAGE = ROOT / "results" / "lyrics_coverage.csv"
 UA = {"User-Agent": "turkce-rap-futbolcu/0.1 (https://github.com/osmangazi7hub/turkce_rap_futbolcu)"}
-WORKERS = 6
+WORKERS = 8
 
 session = requests.Session()
 session.headers.update(UA)
 
 
-def get_json(url: str, params: dict | None = None, retries: int = 5):
-    """GET + JSON; 404 -> None, 429/5xx/ağ hatası -> üstel bekleme ile tekrar."""
+def get_json(url: str, params: dict | None = None, retries: int = 8):
+    """GET + JSON; 404 -> None. 429/5xx/ağ hatasında kısa, rastgele aralıklı
+    bekleme ile tekrar dener (LRCLIB yoğunken sık sık anlık 503 veriyor)."""
     for attempt in range(retries):
         try:
             r = session.get(url, params=params, timeout=30)
@@ -49,7 +51,7 @@ def get_json(url: str, params: dict | None = None, retries: int = 5):
                 return data
         except (requests.RequestException, ValueError):
             pass
-        time.sleep(2 ** (attempt + 1))
+        time.sleep(min(1.5 ** attempt, 15) * random.uniform(0.5, 1.5))
     raise RuntimeError(f"İstek başarısız: {url} {params}")
 
 
@@ -94,15 +96,16 @@ def deezer_tracks(artist_id: int) -> list[dict]:
 
 
 def lrclib_lyrics(artist: str, track: dict) -> dict | None:
-    params = {"artist_name": artist, "track_name": track["title_short"],
-              "album_name": track["album"], "duration": track["duration"]}
-    hit = get_json("https://lrclib.net/api/get", params)
-    if not (hit and hit.get("plainLyrics")):
-        res = get_json("https://lrclib.net/api/search",
-                       {"artist_name": artist, "track_name": track["title_short"]}) or []
-        hit = next((h for h in res if h.get("plainLyrics")
-                    and normalize(artist) in normalize(h.get("artistName", ""))), None)
-    return hit
+    """Tek istek: /api/search sözleri de döndürüyor. Sanatçısı tutan ve süresi
+    Deezer'dakine en yakın sonuç seçilir."""
+    res = get_json("https://lrclib.net/api/search",
+                   {"artist_name": artist, "track_name": track["title_short"]}) or []
+    hits = [h for h in res if h.get("plainLyrics")
+            and normalize(artist) in normalize(h.get("artistName", ""))]
+    if not hits:
+        return None
+    dur = track.get("duration") or 0
+    return min(hits, key=lambda h: abs((h.get("duration") or 0) - dur))
 
 
 def fetch_song(artist: str, artist_id: int, track: dict) -> str:
