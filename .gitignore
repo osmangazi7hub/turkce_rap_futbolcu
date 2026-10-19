@@ -1,2 +1,6 @@
-cache/
+data/lyrics/
+data/cache/
+.env
+.venv/
 __pycache__/
+.pytest_cache/
