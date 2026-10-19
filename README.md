@@ -11,7 +11,8 @@ config.yaml            # ligler, sitelink eşiği, yıl sınırı vb.
 src/build_players.py   # Wikidata SPARQL -> data/players.json
 src/matcher.py         # Türkçe normalizasyon + ek duyarlı eşleştirme
 data/players.json      # futbolcu havuzu (üretilen)
-data/manual_players.csv# 1970 öncesi efsaneler gibi elle eklenenler
+data/manual_players.csv# 1970 öncesi efsaneler gibi elle eklenenler (Lefter, Metin Oktay, Pelé…)
+data/manual_aliases.csv# elle lakap ekle/sil (Tanju, Rüştü, Alex…)
 data/cache/            # Wikidata yanıtları, kelime listesi (git'e girmez)
 data/lyrics/           # şarkı sözleri (git'e girmez)
 results/               # tarama sonuçları
@@ -55,8 +56,12 @@ pytest
 1. Tam ad ve çok kelimeli takma adlar **her zaman** aranır.
 2. Tek kelimelik lakap etiketler (Ronaldinho, Neymar) aranır — Türkçe kelime değilse.
 3. **Tek başına soyad** yalnızca (a) havuzda tekse, (b) [Türkçe kelime listesinde](https://github.com/mertemin/turkish-word-list) yoksa, (c) en az 4 harfse aranır.
+   - "Tek" sayılırken başka oyuncuların ön adları da hesaba katılır ("Yusuf" soyad olsa bile aranmaz).
+   - **Baskınlık:** aynı ismi taşıyanlardan biri açık ara ünlüyse (sitelink ≥ 1.8 × ikinci, ≥ 30) isim onun için aranır: Messi (226) vs Mbida Messi (5), Maradona vs Hugo Maradona, Hagi vs Ianis Hagi. Eşit ünlülerde (Filippo/Simone Inzaghi) aranmaz.
 4. Diğerleri `ambiguous_terms`'e düşer (ör. *Kaká* → "kaka", *Suat Kaya* → "kaya", iki Inzaghi olduğu için "Inzaghi").
-5. Yabancı isimlere Türkçe okunuş varyantı eklenir: Koulibaly → *kulibali*, Carrasco → *karasko*, Sneijder → *snayder*.
+5. `data/manual_aliases.csv` ile eklenen lakaplar kurallardan bağımsız her zaman aranır; hatalı Wikidata takma adları silinebilir.
+6. Kadın futbolcular çıkarılır (bazı lig öğeleri kadın liglerini de kapsıyor).
+7. Yabancı isimlere Türkçe okunuş varyantı eklenir: Koulibaly → *kulibali*, Carrasco → *karasko*, Sneijder → *snayder*.
 
 ### Eşleştirici
 

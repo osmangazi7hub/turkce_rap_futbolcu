@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "data" / "cache"
 OUT = ROOT / "data" / "players.json"
 MANUAL = ROOT / "data" / "manual_players.csv"
+MANUAL_ALIASES = ROOT / "data" / "manual_aliases.csv"
 
 SPARQL_URL = "https://query.wikidata.org/sparql"
 HEADERS = {
@@ -108,6 +109,12 @@ def club_players(clubs: list[str], min_sitelinks: int) -> list[dict]:
           OPTIONAL {{ ?p wdt:P569 ?birth }}
         }}""")
     return rows
+
+
+def female_ids(ids: list[str]) -> list[str]:
+    rows = sparql(f"""
+        SELECT ?p WHERE {{ VALUES ?p {{ {values(ids)} }} ?p wdt:P21 wd:Q6581072 . }}""")
+    return [qid(r["p"]) for r in rows]
 
 
 def year(v: str | None) -> int | None:
@@ -214,7 +221,8 @@ def build_record(pid: str, info: dict, leagues: set[str], sitelinks: int) -> dic
     }
 
 
-def apply_rules(players: list[dict], words: set[str], min_surname_len: int) -> None:
+def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
+                dominance_ratio: float = 1.8, dominance_min_sitelinks: int = 30) -> None:
     """search_terms / ambiguous_terms / variants / ambiguous alanlarını doldurur."""
 
     def single_tokens(p):
@@ -226,11 +234,28 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int) -> N
                 out.add(" ".join(tokenize_term(k)))
         return out
 
-    # Tek kelimelik isimlerin havuzdaki kullanım sayısı (benzersizlik için)
+    # Tek kelimelik isimlerin havuzdaki kullanım sayısı (benzersizlik için).
+    # Ön adlar da sayılır: "Yusuf" bir oyuncunun soyadı olsa bile başkalarının
+    # adı olduğu için tek başına aranmaz.
     counts = Counter()
+    holders: dict[str, list[int]] = defaultdict(list)
     for p in players:
-        for t in single_tokens(p) | p["_mononyms"]:
+        tokens = single_tokens(p) | p["_mononyms"]
+        for name in [p["full_name"], *p["known_as"]]:
+            toks = tokenize_term(name)
+            if len(toks) >= 2:
+                tokens.add(toks[0])
+        for t in tokens:
             counts[t] += 1
+            holders[t].append(p["sitelinks"] or 0)
+
+    def dominant(t: str, p: dict) -> bool:
+        """Aynı ismi taşıyanlar arasında açık ara en ünlü olan bu oyuncu mu?
+        (Messi vs. Mbida Messi, Maradona vs. Hugo Maradona)"""
+        mine = p["sitelinks"] or 0
+        others = sorted(holders[t], reverse=True)
+        others.remove(mine)
+        return mine >= dominance_min_sitelinks and mine >= dominance_ratio * (others[0] if others else 0)
 
     def term_forms(name: str, turkish: bool) -> list[str]:
         forms = [" ".join(tokenize_term(name))]
@@ -269,8 +294,13 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int) -> N
             if is_mononym:
                 ok = not in_dict                                      # Ronaldinho, Kaká
             else:
-                ok = counts[t] == 1 and not in_dict and len(t) >= min_surname_len
+                ok = (not in_dict and len(t) >= min_surname_len
+                      and (counts[t] == 1 or dominant(t, p)))
             add(search if ok else ambiguous, name)
+
+        # 3) Elle zorunlu kılınan takma adlar (Tanju, Rüştü, Alex)
+        for name in p.get("_forced", []):
+            add(search, name)
 
         for name in [p["full_name"], *p["known_as"], *([p["surname"]] if p["surname"] else [])]:
             for v in (name, normalize(name).replace("'", ""), *([] if tr else [turkish_phonetic(name)])):
@@ -282,6 +312,33 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int) -> N
         p["variants"] = variants
         p["ambiguous"] = bool(p["ambiguous_terms"])
         del p["_mononyms"]
+        p.pop("_forced", None)
+
+
+def apply_manual_aliases(players: list[dict]) -> None:
+    """data/manual_aliases.csv: lakap ekle (her zaman aranır) / hatalı takma adı sil."""
+    if not MANUAL_ALIASES.exists():
+        return
+    by_id = {p["wikidata_id"]: p for p in players}
+    by_name = defaultdict(list)
+    for p in players:
+        by_name[normalize(p["full_name"])].append(p)
+    with open(MANUAL_ALIASES, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            key = row["player"].strip()
+            targets = [by_id[key]] if key in by_id else by_name.get(normalize(key), [])
+            if not targets:
+                print(f"   manual_aliases: '{key}' havuzda bulunamadı", file=sys.stderr)
+                continue
+            # Aynı isimde birden çok oyuncu varsa en ünlüsü
+            p = max(targets, key=lambda x: x["sitelinks"] or 0)
+            add = [a.strip() for a in row["add"].split("|") if a.strip()]
+            remove = {normalize(r.strip()) for r in row["remove"].split("|") if r.strip()}
+            p["known_as"] = [k for k in p["known_as"] if normalize(k) not in remove]
+            for a in add:
+                if a not in p["known_as"]:
+                    p["known_as"].append(a)
+            p["_forced"] = add
 
 
 def load_manual() -> list[dict]:
@@ -351,7 +408,13 @@ def main() -> None:
             player_leagues[pid].add(key)
         print(f"   -> {len(kept)} oyuncu")
 
-    print(f"Toplam {len(player_leagues)} benzersiz oyuncu; isimler çekiliyor...")
+    # Kadın futbolcular (bazı lig öğeleri kadın liglerini de kapsıyor) çıkarılır.
+    females = set(cached("female_ids", lambda: [
+        f for part in chunks(sorted(player_leagues), 1000) for f in female_ids(part)]))
+    for f in females:
+        player_leagues.pop(f, None)
+    print(f"Toplam {len(player_leagues)} benzersiz oyuncu ({len(females)} kadın oyuncu çıkarıldı); "
+          "isimler çekiliyor...")
     info = defaultdict(lambda: {"labels": {}, "aliases": [], "surname": None, "turkish": False})
     ids = sorted(player_leagues)
     details_path = CACHE / "details.json"
@@ -396,8 +459,10 @@ def main() -> None:
             m.pop("_labels")
             players.append(m)
 
+    apply_manual_aliases(players)
     words = load_wordlist(cfg["turkish_wordlist_url"])
-    apply_rules(players, words, cfg["min_surname_length"])
+    apply_rules(players, words, cfg["min_surname_length"],
+                cfg["dominance_ratio"], cfg["dominance_min_sitelinks"])
     players.sort(key=lambda p: (-(p["sitelinks"] or 0), p["full_name"]))
     OUT.write_text(json.dumps(players, ensure_ascii=False, indent=1), encoding="utf-8")
     report(players, cfg)

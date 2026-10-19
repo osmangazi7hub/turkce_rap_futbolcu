@@ -37,3 +37,9 @@ min_surname_length: 4
 # Etiket/takma ad alınacak diller.
 label_languages: [mul, tr, en, es, pt, it, de, fr, nl]
 alias_languages: [mul, tr, en]
+
+# Aynı soyadı/lakabı paylaşan oyuncular arasında biri açık ara ünlüyse
+# (sitelink >= ratio x ikinci en ünlü ve >= min) o isim onun için aranır.
+# Örn. Messi (226) vs Mbida Messi (5), Maradona (175) vs Hugo Maradona (31).
+dominance_ratio: 1.8
+dominance_min_sitelinks: 30

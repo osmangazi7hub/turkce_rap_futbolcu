@@ -136,3 +136,25 @@ def test_ronaldo_full_name_beats_mononym(m):
     # "Cristiano Ronaldo" geçince Ronaldo Nazário ayrıca sayılmaz
     assert names(m, "Cristiano Ronaldo gibi") == ["Cristiano Ronaldo"]
     assert names(m, "Ronaldo gibi") == ["Ronaldo"]
+
+
+def test_dominant_surname():
+    players = [
+        {**player("Q1", "Lionel Messi", surname="Messi"), "sitelinks": 226},
+        {**player("Q2", "Georges Mbida Messi", surname="Messi"), "sitelinks": 5},
+        {**player("Q3", "Filippo Inzaghi", surname="Inzaghi"), "sitelinks": 60},
+        {**player("Q4", "Simone Inzaghi", surname="Inzaghi"), "sitelinks": 55},
+    ]
+    apply_rules(players, set(), min_surname_len=4)
+    m = Matcher(players)
+    assert names(m, "Messi'yi izledim") == ["Lionel Messi"]
+    assert names(m, "Inzaghi'nin golü") == []      # iki Inzaghi de eşit ünlü
+
+
+def test_exact_token_beats_suffix_stem():
+    players = [player("Q1", "Zinedine Zidane", surname="Zidane"),
+               player("Q2", "Muhammed Zidan", surname="Zidan")]
+    apply_rules(players, set(), min_surname_len=4)
+    m = Matcher(players)
+    assert names(m, "Zidane gibi kafa") == ["Zinedine Zidane"]
+    assert names(m, "Zidan'a pas") == ["Muhammed Zidan"]

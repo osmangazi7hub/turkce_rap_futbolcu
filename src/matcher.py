@@ -127,7 +127,16 @@ class Matcher:
                     # Aynı aralıkta hem kesin hem belirsiz terim eşleştiyse kesini tut
                     if k not in found or (found[k].ambiguous and not amb):
                         found[k] = m
-        return _drop_contained(list(found.values()))
+        return _drop_contained(_prefer_exact(list(found.values())))
+
+
+def _prefer_exact(matches: list[Match]) -> list[Match]:
+    """Aynı kelime hem ekli hem eksiz okunuşla eşleştiyse eksizi tut:
+    "Zidane" -> Zidane (Zidan + "-e" değil)."""
+    exact = {(m.start, m.end) for m in matches if m.term.replace(" ", "") ==
+             m.text.split("'", 1)[0].replace(" ", "")}
+    return [m for m in matches if (m.start, m.end) not in exact
+            or m.term.replace(" ", "") == m.text.split("'", 1)[0].replace(" ", "")]
 
 
 def _drop_contained(matches: list[Match]) -> list[Match]:
