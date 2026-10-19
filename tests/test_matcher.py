@@ -177,3 +177,13 @@ def test_common_word_prefix_not_split(line):
     m = Matcher(players, common_words={"beton", "melodi", "boykot"})
     assert names(m, line) == []
     assert names(m, "Melo'yu gördüm") == ["Felipe Melo"]
+
+
+def test_highlight(m):
+    from src.matcher import highlight
+    line = "Yakışıyoruz tıpkı Wanda, Neymar'a (He)"
+    [hit] = m.find(line)
+    assert highlight(line, hit) == "Yakışıyoruz tıpkı Wanda, **Neymar'a** (He)"
+    line = "Sol kanatta YANNICK CARRASCO gibi"
+    [hit] = m.find(line)
+    assert highlight(line, hit) == "Sol kanatta **YANNICK CARRASCO** gibi"

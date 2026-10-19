@@ -14,7 +14,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from src.matcher import Matcher
+from src.matcher import Matcher, highlight
 
 ROOT = Path(__file__).resolve().parent.parent
 LYRICS = ROOT / "data" / "lyrics"
@@ -23,7 +23,7 @@ OUT_CSV = ROOT / "results" / "matches.csv"
 OUT_MD = ROOT / "results" / "summary.md"
 
 FIELDS = ["artist", "song", "album", "release_date", "player", "wikidata_id", "tier",
-          "term", "ambiguous", "line"]
+          "term", "matched_text", "ambiguous", "line", "line_highlighted"]
 
 
 def scan() -> tuple[list[dict], Counter]:
@@ -50,7 +50,8 @@ def scan() -> tuple[list[dict], Counter]:
                     "release_date": rec.get("release_date"), "player": m.name,
                     "wikidata_id": m.wikidata_id, "tier": tiers.get(m.wikidata_id),
                     "term": m.term, "ambiguous": "evet" if m.ambiguous else "hayir",
-                    "line": line,
+                    "line": line, "line_highlighted": highlight(line, m),
+                    "matched_text": highlight(line, m, "\0").split("\0")[1],
                 })
     return rows, songs
 
@@ -80,6 +81,17 @@ def write_summary(rows: list[dict], songs: Counter) -> None:
     for artist, n in sorted(songs.items(), key=lambda x: -len(by_artist.get(x[0], ()))):
         ps = sorted(by_artist.get(artist, ()))
         md.append(f"| {artist} | {n} | {len(ps)} | {', '.join(ps)} |")
+
+    md += ["", "## Hangi şarkıda, hangi satırda", "",
+           "Her futbolcu için geçtiği şarkılar ve satırlar; geçen kelime **kalın**.", ""]
+    for (name, tier), _ in ranked:
+        hits = sorted((r for r in sure if r["player"] == name),
+                      key=lambda r: (r["artist"], r["song"]))
+        md.append(f"### {name} ({len({(r['artist'], r['song']) for r in hits})} şarkı)")
+        md.append("")
+        for r in hits:
+            md.append(f"- **{r['artist']}** – *{r['song']}*: \"{r['line_highlighted']}\"")
+        md.append("")
 
     amb = [r for r in rows if r["ambiguous"] == "evet"]
     md += ["", f"## Elle kontrol edilecekler ({len(amb)})", "",

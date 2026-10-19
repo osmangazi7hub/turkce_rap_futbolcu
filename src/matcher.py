@@ -168,3 +168,19 @@ def _drop_contained(matches: list[Match]) -> list[Match]:
             continue
         out.append(m)
     return out
+
+
+def highlight(line: str, match: Match, mark: str = "**") -> str:
+    """Satırda eşleşen kelime(leri) işaretler: "Wanda, **Icardi** (He)".
+    Normalizasyon karakter karakter yapılıp orijinal konumlara geri eşlenir."""
+    norm, origin = [], []
+    for i, ch in enumerate(line):
+        for c in normalize(ch):
+            norm.append(c)
+            origin.append(i)
+    spans = [m.span() for m in TOKEN_RE.finditer("".join(norm))]
+    if match.end > len(spans) or match.start >= match.end:
+        return line
+    a = origin[spans[match.start][0]]
+    b = origin[spans[match.end - 1][1] - 1] + 1
+    return f"{line[:a]}{mark}{line[a:b]}{mark}{line[b:]}"
