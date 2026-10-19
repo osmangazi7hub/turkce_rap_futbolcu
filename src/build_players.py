@@ -1,8 +1,8 @@
 """Wikidata'dan futbolcu havuzunu oluşturur -> data/players.json
 
-Kapsam (config.yaml): 1970+ yılında İngiltere, İspanya, İtalya, Almanya,
-Fransa, Hollanda, Portekiz ve Türkiye üst liglerinde oynamış futbolcular.
-Süper Lig'in hepsi, diğer liglerden sitelink sayısı eşiği geçenler alınır.
+Kapsam (config.yaml): dünyanın tüm zamanlardaki en bilinen N futbolcusu +
+Süper Lig'de oynamışların en bilinen M'si. Bilinirlik = Wikidata sitelink
+sayısı. Oyuncular S/A/B/C (dünya sırası) ve SL (yalnızca Süper Lig) tier'larına ayrılır.
 
 Çalıştırma:  python -m src.build_players
 """
@@ -115,21 +115,6 @@ def female_ids(ids: list[str]) -> list[str]:
     rows = sparql(f"""
         SELECT ?p WHERE {{ VALUES ?p {{ {values(ids)} }} ?p wdt:P21 wd:Q6581072 . }}""")
     return [qid(r["p"]) for r in rows]
-
-
-def year(v: str | None) -> int | None:
-    if not v:
-        return None
-    m = re.match(r"-?(\d{1,4})", v)
-    return int(m.group(1)) if m else None
-
-
-def played_since(row: dict, min_year: int, birth_fallback: int) -> bool:
-    years = [y for y in (year(row.get("start")), year(row.get("end"))) if y]
-    if years:
-        return max(years) >= min_year
-    b = year(row.get("birth"))
-    return b is None or b >= birth_fallback
 
 
 def player_details(ids: list[str], label_langs: list[str], alias_langs: list[str]) -> list[dict]:
@@ -379,44 +364,70 @@ def cached(name: str, fn):
     return data
 
 
+def world_top(n: int, min_sitelinks: int, min_clubs: int) -> list[dict]:
+    """Tüm zamanların en bilinen futbolcuları (sitelink sayısına göre).
+    En az `min_clubs` kulüp kaydı şartı, futbol oynamış ama asıl ünü başka
+    alanda olanları (Camus, Niels Bohr, Sean Connery) eler."""
+    rows = sparql(f"""
+        SELECT ?p ?sl WHERE {{
+          ?p wdt:P106 wd:Q937857 ; wikibase:sitelinks ?sl . FILTER(?sl >= {min_sitelinks})
+          ?p wdt:P21 wd:Q6581097 ; p:P54 ?st .
+        }} GROUP BY ?p ?sl HAVING (COUNT(?st) >= {min_clubs})
+        ORDER BY DESC(?sl) LIMIT {n}""")
+    return [{"p": qid(r["p"]), "sl": int(r["sl"])} for r in rows]
+
+
+def tier_of(rank: int | None) -> str:
+    if rank is None:
+        return "SL"            # yalnızca Süper Lig listesinden gelenler
+    return "S" if rank <= 100 else "A" if rank <= 300 else "B" if rank <= 600 else "C"
+
+
 def main() -> None:
     cfg = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
     default_th = cfg["sitelink_threshold"]
+    wcfg, scfg = cfg["world_top"], cfg["super_lig_top"]
 
+    # 1) Lig üyelikleri (yalnızca "leagues" alanı ve Süper Lig listesi için)
     player_leagues: dict[str, set[str]] = defaultdict(set)
     sitelinks: dict[str, int] = {}
-
     for key, lg in cfg["leagues"].items():
         th = lg.get("sitelink_threshold", default_th)
-        clubs = league_clubs(lg["qid"]) | set((cfg.get("extra_clubs") or {}).get(key, []))
-        print(f"[{lg['name']}] {len(clubs)} kulüp, sitelink eşiği {th}")
 
         def fetch():
+            clubs = league_clubs(lg["qid"]) | set((cfg.get("extra_clubs") or {}).get(key, []))
+            print(f"[{lg['name']}] {len(clubs)} kulüp, sitelink eşiği {th}")
             rows = []
             for part in chunks(sorted(clubs), cfg["clubs_per_query"]):
                 rows += club_players(part, th)
                 time.sleep(0.5)
             return rows
 
-        kept = set()
         for row in cached(f"league_{key}_{th}", fetch):
             pid = qid(row["p"])
-            if played_since(row, cfg["min_year"], cfg["min_birth_year_fallback"]):
-                kept.add(pid)
-                sitelinks[pid] = int(row["sl"])
-        for pid in kept:
             player_leagues[pid].add(key)
-        print(f"   -> {len(kept)} oyuncu")
+            sitelinks[pid] = int(row["sl"])
 
-    # Kadın futbolcular (bazı lig öğeleri kadın liglerini de kapsıyor) çıkarılır.
-    females = set(cached("female_ids", lambda: [
-        f for part in chunks(sorted(player_leagues), 1000) for f in female_ids(part)]))
-    for f in females:
-        player_leagues.pop(f, None)
-    print(f"Toplam {len(player_leagues)} benzersiz oyuncu ({len(females)} kadın oyuncu çıkarıldı); "
+    # 2) Dünya top N (tüm dönemler, tüm ligler)
+    world = cached(f"world_top_{wcfg['n']}",
+                   lambda: world_top(wcfg["n"], wcfg["min_sitelinks"], wcfg["min_clubs"]))
+    world_rank = {r["p"]: i for i, r in enumerate(world, 1)}
+    for r in world:
+        sitelinks[r["p"]] = r["sl"]
+
+    # 3) Süper Lig'in en bilinen M oyuncusu (tüm dönemler, kadınlar hariç)
+    super_lig = [pid for pid, lgs in player_leagues.items() if "super_lig" in lgs]
+    females = set(cached("female_ids_super_lig", lambda: [
+        f for part in chunks(sorted(super_lig), 1000) for f in female_ids(part)]))
+    super_lig = sorted((p for p in super_lig if p not in females),
+                       key=lambda p: -sitelinks[p])[:scfg["n"]]
+    sl_rank = {p: i for i, p in enumerate(super_lig, 1)}
+
+    ids = sorted(set(world_rank) | set(sl_rank))
+    print(f"Dünya top {len(world_rank)} + Süper Lig top {len(sl_rank)} = {len(ids)} oyuncu; "
           "isimler çekiliyor...")
+
     info = defaultdict(lambda: {"labels": {}, "aliases": [], "surname": None, "turkish": False})
-    ids = sorted(player_leagues)
     details_path = CACHE / "details.json"
     details = {}
     if details_path.exists() and "--refresh" not in sys.argv:
@@ -428,11 +439,9 @@ def main() -> None:
             details[i] = []
         for row in rows:
             details[qid(row["p"])].append(row)
-        if n % 10 == 0:
-            print(f"   {n * cfg['players_per_query']}/{len(missing)}")
-            details_path.write_text(json.dumps(details, ensure_ascii=False), encoding="utf-8")
         time.sleep(0.3)
-    details_path.write_text(json.dumps(details, ensure_ascii=False), encoding="utf-8")
+    if missing:
+        details_path.write_text(json.dumps(details, ensure_ascii=False), encoding="utf-8")
 
     for pid in ids:
         for row in details[pid]:
@@ -449,14 +458,20 @@ def main() -> None:
 
     players = []
     for pid in ids:
-        rec = build_record(pid, info[pid], player_leagues[pid], sitelinks[pid])
+        rec = build_record(pid, info[pid], player_leagues.get(pid, set()), sitelinks[pid])
         if rec:
+            rec["world_rank"] = world_rank.get(pid)
+            rec["super_lig_rank"] = sl_rank.get(pid)
+            rec["tier"] = tier_of(rec["world_rank"])
             players.append(rec)
 
-    existing = {normalize(p["full_name"]) for p in players}
+    # Elle eklenenler: aynı isimde ÜNLÜ biri zaten varsa atla
+    # (aynı adlı az bilinen biri yüzünden gerçek Pelé'nin atlanmaması için).
+    existing = {normalize(p["full_name"]) for p in players if (p["sitelinks"] or 0) >= 40}
     for m in load_manual():
         if normalize(m["full_name"]) not in existing:
             m.pop("_labels")
+            m.update(world_rank=None, super_lig_rank=None, tier="M")
             players.append(m)
 
     apply_manual_aliases(players)
@@ -471,17 +486,17 @@ def main() -> None:
 def report(players: list[dict], cfg: dict) -> None:
     print(f"\n=== {OUT.relative_to(ROOT)} ===")
     print(f"Toplam oyuncu: {len(players)}")
+    print("Tier dağılımı:", dict(sorted(Counter(p["tier"] for p in players).items())))
+    print(f"Süper Lig top listesinden: {sum(1 for p in players if p.get('super_lig_rank'))}")
     dist = Counter(l for p in players for l in p["leagues"])
     print("Lig dağılımı (bir oyuncu birden çok ligde sayılabilir):")
     for key, lg in cfg["leagues"].items():
         print(f"   {lg['name']:<32} {dist.get(key, 0)}")
-    if dist.get("manual"):
-        print(f"   {'(elle eklenen)':<32} {dist['manual']}")
     print(f"Ambiguous (soyadı tek başına aranmayan): {sum(p['ambiguous'] for p in players)}")
     print("\nRastgele 30 örnek:")
     for p in random.Random(42).sample(players, min(30, len(players))):
-        print(f"   {p['full_name']:<30} lig={','.join(p['leagues']):<28} sl={p['sitelinks']!s:<4} "
-              f"ara={p['search_terms']} belirsiz={p['ambiguous_terms']}")
+        print(f"   [{p['tier']:<2}] {p['full_name']:<30} sl={p['sitelinks']!s:<4} "
+              f"ara={p['search_terms'][:4]} belirsiz={p['ambiguous_terms'][:3]}")
 
 
 if __name__ == "__main__":

@@ -1,12 +1,18 @@
 # Futbolcu havuzu ayarları (src/build_players.py)
+#
+# Havuz = dünyanın tüm zamanlardaki en bilinen N futbolcusu
+#       + Süper Lig'de oynamışların en bilinen M'si.
+# "Bilinirlik" = Wikidata sitelink sayısı (kaç dilde Wikipedia sayfası var).
 
-# 1970 ve sonrasında oynamış olanlar alınır. Kulüp kaydında tarih yoksa
-# doğum yılı >= min_birth_year_fallback olanlar kabul edilir.
-min_year: 1970
-min_birth_year_fallback: 1950
+world_top:
+  n: 1000
+  min_sitelinks: 35   # sorguyu hızlandırmak için ön filtre
+  min_clubs: 3        # futbolu yan uğraş olanları (Camus, Niels Bohr) eler
 
-# Süper Lig dışındaki liglerde oyuncunun en az kaç Wikipedia dilinde
-# sayfası (sitelink) olmalı. Süper Lig için 0 = hepsi.
+super_lig_top:
+  n: 500
+
+# Lig üyeliği verisi ("leagues" alanı) için kullanılan eşik; Süper Lig'de 0 = hepsi.
 sitelink_threshold: 15
 
 leagues:
