@@ -165,3 +165,14 @@ def test_murda_saliba():
                {**player("Q2", "Nathan Saliba", surname="Saliba"), "sitelinks": 28}]
     apply_rules(players, set(), min_surname_len=4)
     assert names(Matcher(players), "Saliba, gunners") == ["William Saliba"]
+
+
+@pytest.mark.parametrize("line", ["Sokağım betondan", "bu melodim", "boykota gittik"])
+def test_common_word_prefix_not_split(line):
+    players = [player("Q1", "Beto Pimparel", surname="Beto"),
+               player("Q2", "Felipe Melo", surname="Melo"),
+               player("Q3", "Denys Boyko", surname="Boyko")]
+    apply_rules(players, set(), min_surname_len=4)
+    m = Matcher(players, common_words={"beton", "melodi", "boykot"})
+    assert names(m, line) == []
+    assert names(m, "Melo'yu gördüm") == ["Felipe Melo"]

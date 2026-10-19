@@ -28,6 +28,7 @@ CACHE = ROOT / "data" / "cache"
 OUT = ROOT / "data" / "players.json"
 MANUAL = ROOT / "data" / "manual_players.csv"
 MANUAL_ALIASES = ROOT / "data" / "manual_aliases.csv"
+COMMON_WORDS = ROOT / "data" / "common_words_tr.txt"
 
 SPARQL_URL = "https://query.wikidata.org/sparql"
 HEADERS = {
@@ -177,6 +178,24 @@ def load_wordlist(url: str) -> set[str]:
     return words
 
 
+FREQ_URL = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/{lang}/{lang}_50k.txt"
+
+
+def load_frequency(lang: str, top: int) -> dict[str, int]:
+    """OpenSubtitles kelime sıklığı listesi (çekimli halleriyle): kelime -> sıra."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    path = CACHE / f"freq_{lang}.txt"
+    if not path.exists():
+        r = session.get(FREQ_URL.format(lang=lang), timeout=60)
+        r.raise_for_status()
+        path.write_text(r.text, encoding="utf-8")
+    ranks = {}
+    for i, line in enumerate(path.read_text(encoding="utf-8").splitlines()[:top], 1):
+        w = normalize(line.split(" ", 1)[0]).replace("'", "")
+        ranks.setdefault(w, i)
+    return ranks
+
+
 def build_record(pid: str, info: dict, leagues: set[str], sitelinks: int) -> dict | None:
     labels: dict[str, str] = info["labels"]
     full_name = next((labels[l] for l in ("tr", "en", "mul") if l in labels), None) \
@@ -207,8 +226,23 @@ def build_record(pid: str, info: dict, leagues: set[str], sitelinks: int) -> dic
 
 
 def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
-                dominance_ratio: float = 1.8, dominance_min_sitelinks: int = 30) -> None:
-    """search_terms / ambiguous_terms / variants / ambiguous alanlarını doldurur."""
+                dominance_ratio: float = 1.8, dominance_min_sitelinks: int = 30,
+                foreign: dict[str, int] | None = None, foreign_top: int = 15000,
+                foreign_top_famous: int = 2000, famous_sitelinks: int = 80) -> None:
+    """search_terms / ambiguous_terms / variants / ambiguous alanlarını doldurur.
+
+    words:   Türkçe kelimeler (TDK + sık kullanılan çekimli haller) -> tek başına aranmaz.
+    foreign: yabancı dillerde kelime -> en iyi sıklık sırası. İlk `foreign_top`
+             kelimeden biriyse aranmaz; çok ünlü oyuncularda sınır `foreign_top_famous`
+             ("messi" İtalyanca'da 2839. kelime ama Messi aranır; "best" aranmaz).
+    """
+    foreign = foreign or {}
+
+    def is_word(form: str, famous: bool) -> bool:
+        if form in words:
+            return True
+        rank = foreign.get(form)
+        return rank is not None and rank <= (foreign_top_famous if famous else foreign_top)
 
     def single_tokens(p):
         out = set()
@@ -272,16 +306,23 @@ def apply_rules(players: list[dict], words: set[str], min_surname_len: int,
         singles = [k for k in [p["full_name"], *p["known_as"]] if len(tokenize_term(k)) == 1]
         if p["surname"] and p["surname"] not in singles:
             singles.append(p["surname"])
+        famous = (p["sitelinks"] or 0) >= famous_sitelinks
         for name in singles:
             t = " ".join(tokenize_term(name))
             is_mononym = t in p["_mononyms"] and t != surname_norm
-            in_dict = t in words or turkish_phonetic(name) in words
             if is_mononym:
-                ok = not in_dict                                      # Ronaldinho, Kaká
+                ok = not is_word(t, famous) and len(t) >= 3           # Ronaldinho, Kaká
             else:
-                ok = (not in_dict and len(t) >= min_surname_len
+                ok = (not is_word(t, famous) and len(t) >= min_surname_len
                       and (counts[t] == 1 or dominant(t, p)))
-            add(search if ok else ambiguous, name)
+            # Türkçe okunuş varyantı ayrıca kontrol edilir: Bounou -> "bunu",
+            # Vardy -> "vardi" kelime olduğu için yalnızca orijinal yazım aranır.
+            for j, f in enumerate(term_forms(name, tr)):
+                # Kısa isimlerin okunuş varyantı kelimeye çok benziyor (Isco -> "isko" -> işkolik)
+                phonetic_ok = j == 0 or len(f) >= 6
+                target = search if ok and phonetic_ok and not is_word(f, famous) else ambiguous
+                if f and f not in search and f not in target:
+                    target.append(f)
 
         # 3) Elle zorunlu kılınan takma adlar (Tanju, Rüştü, Alex)
         for name in p.get("_forced", []):
@@ -423,7 +464,8 @@ def main() -> None:
                        key=lambda p: -sitelinks[p])[:scfg["n"]]
     sl_rank = {p: i for i, p in enumerate(super_lig, 1)}
 
-    ids = sorted(set(world_rank) | set(sl_rank))
+    # Futbol oynamış ama futbolcu olarak anılmayanlar elle çıkarılır (config: exclude_ids)
+    ids = sorted((set(world_rank) | set(sl_rank)) - set(cfg.get("exclude_ids") or []))
     print(f"Dünya top {len(world_rank)} + Süper Lig top {len(sl_rank)} = {len(ids)} oyuncu; "
           "isimler çekiliyor...")
 
@@ -475,9 +517,21 @@ def main() -> None:
             players.append(m)
 
     apply_manual_aliases(players)
-    words = load_wordlist(cfg["turkish_wordlist_url"])
+    wf = cfg["word_filter"]
+    tr_freq = load_frequency("tr", wf["turkish_top"])
+    words = load_wordlist(cfg["turkish_wordlist_url"]) | set(tr_freq)
+    foreign: dict[str, int] = {}
+    for lang in wf["foreign_languages"]:
+        for w, r in load_frequency(lang, wf["foreign_top"]).items():
+            foreign[w] = min(r, foreign.get(w, r))
+    blocked = {" ".join(tokenize_term(t)) for t in wf.get("blocked_terms", [])}
+    words |= blocked
     apply_rules(players, words, cfg["min_surname_length"],
-                cfg["dominance_ratio"], cfg["dominance_min_sitelinks"])
+                cfg["dominance_ratio"], cfg["dominance_min_sitelinks"],
+                foreign, wf["foreign_top"], wf["foreign_top_famous"], wf["famous_sitelinks"])
+    # Eşleştiricinin ek soymayacağı yaygın Türkçe kelimeler ("melodi" != Melo + di)
+    COMMON_WORDS.write_text("\n".join(sorted(load_frequency("tr", 50000))) + "\n",
+                            encoding="utf-8")
     players.sort(key=lambda p: (-(p["sitelinks"] or 0), p["full_name"]))
     OUT.write_text(json.dumps(players, ensure_ascii=False, indent=1), encoding="utf-8")
     report(players, cfg)

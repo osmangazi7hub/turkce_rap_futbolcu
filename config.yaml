@@ -49,3 +49,17 @@ alias_languages: [mul, tr, en]
 # Örn. Messi (226) vs Mbida Messi (5), Maradona (175) vs Hugo Maradona (31).
 dominance_ratio: 1.8
 dominance_min_sitelinks: 30
+
+# Kelimeyle karışan isimleri ayıklama (OpenSubtitles sıklık listeleri, çekimli haller dahil).
+word_filter:
+  turkish_top: 50000            # en sık 50 bin Türkçe kelimeden biriyse tek başına aranmaz (vardı, durmaz, bunu)
+  foreign_languages: [en, de, nl, es, it, fr]
+  foreign_top: 15000            # yabancı dillerde en sık 15 bin (best, young, king, ferrari)
+  foreign_top_famous: 2000      # çok ünlülerde sınır daha dar: "messi" (it 2839) aranır
+  famous_sitelinks: 80
+  # Argo, marka vb. elle engellenen tek kelimeler (çoklu isim olarak yine aranır)
+  blocked_terms: [sosa, alcantara, cocu, alaba, trapp, litti]
+
+# Havuzdan elle çıkarılanlar (futbol oynamış ama futbolcu olarak bilinmeyenler)
+exclude_ids:
+  - Q39259   # Recep Tayyip Erdoğan

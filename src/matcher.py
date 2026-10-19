@@ -57,14 +57,20 @@ def tokenize_term(term: str) -> tuple[str, ...]:
     return tuple(re.findall(r"[a-z0-9]+", norm))
 
 
-def _stems(token: str) -> set[str]:
-    """Bir sözcüğün olası gövdeleri: kendisi + ek soyulmuş halleri."""
+def _stems(token: str, common: frozenset[str] = frozenset()) -> set[str]:
+    """Bir sözcüğün olası gövdeleri: kendisi + ek soyulmuş halleri.
+    Yaygın bir Türkçe kelimeyse ("melodi", "polisi", "umarım") eke ayrılmaz."""
     if "'" in token:
         # Kesme işareti varsa ondan önceki kısım isimdir; sonrası ne olursa olsun ektir.
         return {token.split("'", 1)[0]}
     stems = {token}
+    if token in common:
+        return stems
+    # En uzun "yaygın kelime" öneki: "betondan" -> "beton", "boykota" -> "boykot".
+    # Gövde bundan kısa olamaz; yoksa "beto + ndan" gibi yanlış bölünür.
+    floor = max((n for n in range(3, len(token)) if token[:n] in common), default=0)
     for k in range(1, min(MAX_SUFFIX_LEN, len(token) - 2) + 1):
-        if SUFFIX_RE.fullmatch(token[-k:]):
+        if len(token) - k >= floor and SUFFIX_RE.fullmatch(token[-k:]):
             stems.add(token[:-k])
     return stems
 
@@ -81,7 +87,9 @@ class Match:
 
 
 class Matcher:
-    def __init__(self, players: list[dict], include_ambiguous: bool = False):
+    def __init__(self, players: list[dict], include_ambiguous: bool = False,
+                 common_words: set[str] | None = None):
+        self.common = frozenset(common_words or ())
         # ilk kelime -> [(terim kelimeleri, oyuncu, belirsiz mi)]
         self.index: dict[str, list[tuple[tuple[str, ...], dict, bool]]] = {}
         for p in players:
@@ -93,6 +101,10 @@ class Matcher:
 
     @classmethod
     def from_file(cls, path: str | Path = "data/players.json", **kw) -> "Matcher":
+        path = Path(path)
+        common = path.parent / "common_words_tr.txt"
+        if "common_words" not in kw and common.exists():
+            kw["common_words"] = set(common.read_text(encoding="utf-8").split())
         with open(path, encoding="utf-8") as f:
             return cls(json.load(f), **kw)
 
@@ -104,7 +116,7 @@ class Matcher:
     def find(self, line: str) -> list[Match]:
         tokens = TOKEN_RE.findall(normalize(line))
         plain = [t.split("'", 1)[0] if "'" in t else t for t in tokens]
-        stems = [_stems(t) for t in tokens]
+        stems = [_stems(t, self.common) for t in tokens]
         found: dict[tuple[str, int, int], Match] = {}
         for i in range(len(tokens)):
             # Tek kelimelik terimlerde ek soyulabilir; çok kelimelilerde ilk kelime tam olmalı.
