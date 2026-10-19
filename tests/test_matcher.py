@@ -158,3 +158,10 @@ def test_exact_token_beats_suffix_stem():
     m = Matcher(players)
     assert names(m, "Zidane gibi kafa") == ["Zinedine Zidane"]
     assert names(m, "Zidan'a pas") == ["Muhammed Zidan"]
+
+
+def test_murda_saliba():
+    players = [{**player("Q1", "William Saliba", surname="Saliba"), "sitelinks": 52},
+               {**player("Q2", "Nathan Saliba", surname="Saliba"), "sitelinks": 28}]
+    apply_rules(players, set(), min_surname_len=4)
+    assert names(Matcher(players), "Saliba, gunners") == ["William Saliba"]

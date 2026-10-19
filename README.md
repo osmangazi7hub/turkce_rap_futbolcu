@@ -31,12 +31,12 @@ pytest
 
 ## Futbolcu havuzu
 
-- **Kapsam:** 1970 ve sonrasında İngiltere (Premier League + 1992 öncesi First Division), İspanya, İtalya, Almanya, Fransa, Hollanda, Portekiz ve Türkiye üst liglerinde oynamış futbolcular.
-  - Süper Lig: **hepsi**.
-  - Diğer ligler: Wikipedia sitelink sayısı **≥ 15** olanlar (`config.yaml` → `sitelink_threshold`, lig bazında da değiştirilebilir).
-  - Yıl: kulüp kaydının başlangıç/bitiş tarihi ≥ 1970; tarih yoksa doğum yılı ≥ 1950.
-- Kulüpler: Wikidata'da lige bağlı (P118, geçmiş kayıtlar dahil) ve lig sezonlarına katılmış (P1923) kulüpler. Eksik kalan kulüp olursa `extra_clubs` ile eklenir.
-- Sorgular lig ve kulüp gruplarına bölünür, 429/5xx/timeout'ta üstel beklemeyle tekrar denenir.
+- **Kapsam:** dünyanın tüm zamanlardaki **en bilinen 1000 futbolcusu** (tüm ligler, tüm dönemler) + **Süper Lig'de oynamışların en bilinen 500'ü**.
+  - Bilinirlik = Wikidata sitelink sayısı (kaç dilde Wikipedia sayfası var). Sayılar `config.yaml`'dan değişir.
+  - Dünya listesinde en az 3 kulüp kaydı şartı var; futbolu yan uğraş olan ünlüler (Camus, Niels Bohr) elenir.
+  - Tier: **S** (dünya 1–100), **A** (101–300), **B** (301–600), **C** (601–1000), **SL** (yalnızca Süper Lig listesinden), **M** (elle eklenen).
+- Süper Lig kulüpleri: Wikidata'da lige bağlı (P118, geçmiş kayıtlar dahil) ve lig sezonlarına katılmış (P1923) kulüpler.
+- Sorgular bölünür, 429/5xx/timeout'ta üstel beklemeyle tekrar denenir; yanıtlar `data/cache/` altında saklanır.
 
 `data/players.json` kaydı:
 
@@ -47,6 +47,7 @@ pytest
 | `known_as` | diğer dillerdeki etiketler + takma adlar (ör. "Ronaldinho", "Kral Hakan") |
 | `surname` | Wikidata soyadı (P734), yoksa adın son kelimesi |
 | `leagues`, `sitelinks`, `turkish` | ligler, sitelink sayısı, TC vatandaşı mı |
+| `tier`, `world_rank`, `super_lig_rank` | bilinirlik kademesi ve sıraları |
 | `variants` | tüm yazımlar: orijinal, aksansız, Türkçe okunuş (Aboubakar → abubakar) |
 | `search_terms` | kesin aranacak terimler |
 | `ambiguous_terms`, `ambiguous` | tek başına aranmayan terimler |
