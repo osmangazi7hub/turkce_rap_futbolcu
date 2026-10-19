@@ -3,7 +3,7 @@
     python -m src.scan
 
 Çıktılar:
-  results/matches.csv  her eşleşen satır (kesin + elle kontrol edilecek)
+  results/matches.csv  her eşleşen satır
   results/summary.md   özet: en çok anılan futbolcular, sanatçı bazında dağılım
 """
 
@@ -23,11 +23,11 @@ OUT_CSV = ROOT / "results" / "matches.csv"
 OUT_MD = ROOT / "results" / "summary.md"
 
 FIELDS = ["artist", "song", "album", "release_date", "player", "wikidata_id", "tier",
-          "term", "matched_text", "ambiguous", "line", "line_highlighted"]
+          "term", "matched_text", "line", "line_highlighted"]
 
 
 def scan() -> tuple[list[dict], Counter]:
-    matcher = Matcher.from_file(PLAYERS, include_ambiguous=True)
+    matcher = Matcher.from_file(PLAYERS)
     players = json.loads(PLAYERS.read_text(encoding="utf-8"))
     tiers = {p["wikidata_id"]: p["tier"] for p in players}
 
@@ -49,7 +49,7 @@ def scan() -> tuple[list[dict], Counter]:
                     "artist": rec["artist"], "song": rec["title"], "album": rec.get("album"),
                     "release_date": rec.get("release_date"), "player": m.name,
                     "wikidata_id": m.wikidata_id, "tier": tiers.get(m.wikidata_id),
-                    "term": m.term, "ambiguous": "evet" if m.ambiguous else "hayir",
+                    "term": m.term,
                     "line": line, "line_highlighted": highlight(line, m),
                     "matched_text": highlight(line, m, "\0").split("\0")[1],
                 })
@@ -57,7 +57,7 @@ def scan() -> tuple[list[dict], Counter]:
 
 
 def write_summary(rows: list[dict], songs: Counter) -> None:
-    sure = [r for r in rows if r["ambiguous"] == "hayir"]
+    sure = rows
     by_player = defaultdict(set)
     for r in sure:
         by_player[(r["player"], r["tier"])].add((r["artist"], r["song"]))
@@ -93,13 +93,6 @@ def write_summary(rows: list[dict], songs: Counter) -> None:
             md.append(f"- **{r['artist']}** – *{r['song']}*: \"{r['line_highlighted']}\"")
         md.append("")
 
-    amb = [r for r in rows if r["ambiguous"] == "evet"]
-    md += ["", f"## Elle kontrol edilecekler ({len(amb)})", "",
-           "Bu terimler gündelik kelimelerle ya da başka oyuncularla karışabilir "
-           "(ör. *kaka*, *salah*). Tamamı `results/matches.csv` içinde `ambiguous=evet`.", "",
-           "| Terim | Olası futbolcu | Satır sayısı |", "|---|---|---|"]
-    for (term, player), n in Counter((r["term"], r["player"]) for r in amb).most_common(40):
-        md.append(f"| {term} | {player} | {n} |")
     OUT_MD.write_text("\n".join(md) + "\n", encoding="utf-8")
 
 
@@ -111,9 +104,8 @@ def main() -> None:
         w.writeheader()
         w.writerows(rows)
     write_summary(rows, songs)
-    sure = sum(r["ambiguous"] == "hayir" for r in rows)
     print(f"{len(songs)} sanatçı, {sum(songs.values())} şarkı tarandı: "
-          f"{sure} kesin, {len(rows) - sure} kontrol edilecek eşleşme -> results/")
+          f"{len(rows)} eşleşme -> results/")
 
 
 if __name__ == "__main__":

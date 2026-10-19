@@ -6,46 +6,46 @@ Taranan: **36 sanatçı, 3203 şarkı**. Kesin eşleşme: **208 satır, 94 farkl
 
 | # | Futbolcu | Tier | Şarkı sayısı | Sanatçılar |
 |---|---|---|---|---|
-| 1 | Lionel Messi | S | 16 | Allame (3), Joker (2), Patron (2), Çakal (1), Contra (1), Murda (1), Şehinşah (1), Khontkar (1), Hidra (1), Uzi (1), Blok3 (1), Batuflex (1) |
-| 2 | Diego Maradona | S | 12 | Ceza (1), Ati242 (1), Wegh (1), Çakal (1), Khontkar (1), Sefo (1), Allame (1), No.1 (1), Motive (1), Uzi (1), Mero (1), Ben Fero (1) |
-| 3 | Neymar | S | 10 | Patron (2), Contra (1), Ati242 (1), Ben Fero (1), Allame (1), Mero (1), Murda (1), Ezhel (1), Batuflex (1) |
-| 4 | Cristiano Ronaldo | S | 7 | Patron (2), Çakal (1), Ezhel (1), Reckol (1), Hidra (1), Mero (1) |
-| 5 | Mauro Icardi | A | 7 | Murda (2), Hidra (2), Bege (1), Batuflex (1), Reckol (1) |
-| 6 | Lamine Yamal | S | 5 | Batuflex (1), Era7capone (1), Mero (1), Çakal (1), Motive (1) |
+| 1 | Lionel Messi | S | 16 | Allame (3), Patron (2), Joker (2), Çakal (1), Contra (1), Uzi (1), Blok3 (1), Murda (1), Şehinşah (1), Hidra (1), Khontkar (1), Batuflex (1) |
+| 2 | Diego Maradona | S | 12 | Çakal (1), Uzi (1), Wegh (1), Allame (1), Ceza (1), No.1 (1), Khontkar (1), Motive (1), Ati242 (1), Sefo (1), Ben Fero (1), Mero (1) |
+| 3 | Neymar | S | 10 | Patron (2), Ezhel (1), Mero (1), Ben Fero (1), Ati242 (1), Allame (1), Murda (1), Contra (1), Batuflex (1) |
+| 4 | Cristiano Ronaldo | S | 7 | Patron (2), Çakal (1), Reckol (1), Hidra (1), Mero (1), Ezhel (1) |
+| 5 | Mauro Icardi | A | 7 | Hidra (2), Murda (2), Bege (1), Reckol (1), Batuflex (1) |
+| 6 | Lamine Yamal | S | 5 | Çakal (1), Era7capone (1), Motive (1), Mero (1), Batuflex (1) |
 | 7 | Ronaldinho | S | 5 | Mero (2), Murda (2), Ben Fero (1) |
 | 8 | Andrés Iniesta | S | 4 | Şehinşah (2), Çakal (1), Mero (1) |
-| 9 | Gianluigi Buffon | S | 4 | Mero (2), Ati242 (1), Patron (1) |
-| 10 | Kylian Mbappé | S | 4 | Çakal (1), Batuflex (1), Lvbel C5 (1), Blok3 (1) |
-| 11 | Carles Puyol | A | 3 | Khontkar (1), Lvbel C5 (1), Ben Fero (1) |
-| 12 | Didier Drogba | S | 3 | Allame (1), Reckol (1), Lvbel C5 (1) |
-| 13 | Felipe Melo | SL | 3 | Hidra (1), Wegh (1), Blok3 (1) |
-| 14 | Gheorghe Hagi | A | 3 | Joker (1), Hidra (1), Khontkar (1) |
-| 15 | Lefter Küçükandonyadis | M | 3 | Norm Ender (1), Patron (1), Ceza (1) |
-| 16 | Marco Materazzi | B | 3 | Hidra (1), No.1 (1), Murda (1) |
-| 17 | Mario Balotelli | S | 3 | Murda (1), Patron (1), Mero (1) |
-| 18 | Mesut Özil | S | 3 | Patron (1), Mero (1), Şehinşah (1) |
-| 19 | Paolo Maldini | A | 3 | Khontkar (1), Murda (1), Ben Fero (1) |
+| 9 | Gianluigi Buffon | S | 4 | Mero (2), Patron (1), Ati242 (1) |
+| 10 | Kylian Mbappé | S | 4 | Lvbel C5 (1), Batuflex (1), Blok3 (1), Çakal (1) |
+| 11 | Carles Puyol | A | 3 | Lvbel C5 (1), Khontkar (1), Ben Fero (1) |
+| 12 | Didier Drogba | S | 3 | Lvbel C5 (1), Reckol (1), Allame (1) |
+| 13 | Felipe Melo | SL | 3 | Wegh (1), Blok3 (1), Hidra (1) |
+| 14 | Gheorghe Hagi | A | 3 | Khontkar (1), Hidra (1), Joker (1) |
+| 15 | Lefter Küçükandonyadis | M | 3 | Ceza (1), Patron (1), Norm Ender (1) |
+| 16 | Marco Materazzi | B | 3 | Murda (1), Hidra (1), No.1 (1) |
+| 17 | Mario Balotelli | S | 3 | Patron (1), Murda (1), Mero (1) |
+| 18 | Mesut Özil | S | 3 | Mero (1), Patron (1), Şehinşah (1) |
+| 19 | Paolo Maldini | A | 3 | Murda (1), Khontkar (1), Ben Fero (1) |
 | 20 | Xavi | S | 3 | Şehinşah (2), Mero (1) |
-| 21 | Zinedine Zidane | S | 3 | No.1 (1), Hidra (1), Mero (1) |
-| 22 | Éric Cantona | A | 3 | Patron (1), Mero (1), Hidra (1) |
+| 21 | Zinedine Zidane | S | 3 | Mero (1), Hidra (1), No.1 (1) |
+| 22 | Éric Cantona | A | 3 | Patron (1), Hidra (1), Mero (1) |
 | 23 | Alexsandro de Souza | SL | 2 | Patron (2) |
-| 24 | Antoine Griezmann | S | 2 | Patron (1), Batuflex (1) |
+| 24 | Antoine Griezmann | S | 2 | Batuflex (1), Patron (1) |
 | 25 | Filippo Inzaghi | A | 2 | Ati242 (2) |
 | 26 | Francesco Totti | S | 2 | Hidra (1), Patron (1) |
 | 27 | John Terry | A | 2 | Joker (1), Batuflex (1) |
-| 28 | Josep Guardiola | S | 2 | Blok3 (1), Lvbel C5 (1) |
+| 28 | Josep Guardiola | S | 2 | Lvbel C5 (1), Blok3 (1) |
 | 29 | José Mourinho | S | 2 | Patron (1), Blok3 (1) |
-| 30 | Juan Sebastián Verón | B | 2 | No.1 (1), Hidra (1) |
+| 30 | Juan Sebastián Verón | B | 2 | Hidra (1), No.1 (1) |
 | 31 | Karim Benzema | S | 2 | Murda (2) |
 | 32 | Leonardo Bonucci | A | 2 | Allame (1), Ati242 (1) |
 | 33 | Luís Figo | A | 2 | Hidra (1), Patron (1) |
 | 34 | Muhammed Salah | S | 2 | Mero (2) |
-| 35 | Ousmane Dembélé | S | 2 | Batuflex (1), Ati242 (1) |
-| 36 | Paul Pogba | S | 2 | Batuflex (1), Lvbel C5 (1) |
+| 35 | Ousmane Dembélé | S | 2 | Ati242 (1), Batuflex (1) |
+| 36 | Paul Pogba | S | 2 | Lvbel C5 (1), Batuflex (1) |
 | 37 | Pelé | S | 2 | Khontkar (2) |
 | 38 | Rafael Leão | B | 2 | Murda (2) |
 | 39 | Robin van Persie | S | 2 | Mero (1), Allame (1) |
-| 40 | İlhan Mansız | C | 2 | EGE! (1), Contra (1) |
+| 40 | İlhan Mansız | C | 2 | Contra (1), EGE! (1) |
 | 41 | Adam Lallana | C | 1 | Ati242 (1) |
 | 42 | Alexandre Lacazette | C | 1 | Ati242 (1) |
 | 43 | Andrea Pirlo | S | 1 | Murda (1) |
@@ -636,50 +636,3 @@ Her futbolcu için geçtiği şarkılar ve satırlar; geçen kelime **kalın**.
 
 - **Ben Fero** – *ENGEREK*: "Güya kasvet sene biraz, dünya kanser ben **Abidal** (yes, yes baba)"
 
-
-## Elle kontrol edilecekler (9597)
-
-Bu terimler gündelik kelimelerle ya da başka oyuncularla karışabilir (ör. *kaka*, *salah*). Tamamı `results/matches.csv` içinde `ambiguous=evet`.
-
-| Terim | Olası futbolcu | Satır sayısı |
-|---|---|---|
-| son | Son Heung-min | 896 |
-| kim | Kim Min-jae | 748 |
-| bunu | Yassine Bounou | 718 |
-| mu | José Mourinho | 588 |
-| oh | Oh Hyeon-gyu | 586 |
-| kara | Jamie Carragher | 498 |
-| can | Emre Can | 406 |
-| inan | Selçuk İnan | 352 |
-| gunes | Şenol Güneş | 244 |
-| yakin | Hakan Yakın | 203 |
-| yakin | Murat Yakın | 203 |
-| bebe | Tiago Manuel Dias Correia | 202 |
-| vardi | Jamie Vardy | 166 |
-| ta | Trent Alexander-Arnold | 163 |
-| trap | Kevin Trapp | 145 |
-| sar | Fabian Schär | 115 |
-| saka | Bukayo Saka | 102 |
-| gaza | Paul Gascoigne | 99 |
-| bari | Gareth Barry | 99 |
-| kana | Lorik Cana | 89 |
-| kacar | Gojko Kačar | 84 |
-| toprak | Ömer Toprak | 82 |
-| oku | Daisuke Oku | 74 |
-| ba | Demba Ba | 67 |
-| mor | Emre Mor | 65 |
-| guler | Arda Güler | 64 |
-| sov | Moussa Sow | 60 |
-| king | Joshua King | 59 |
-| young | Ashley Young | 59 |
-| celik | Zeki Çelik | 58 |
-| sukur | Hakan Şükür | 57 |
-| kole | Ashley Cole | 56 |
-| kole | Joe Cole | 56 |
-| kole | Andrew Cole | 56 |
-| best | George Best | 53 |
-| sam | Sidney Sam | 53 |
-| seri | Jean Michaël Seri | 50 |
-| ali | Dele Alli | 48 |
-| park | Park Ji-Sung | 48 |
-| elmas | Elif Elmas | 47 |
