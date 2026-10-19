@@ -1,0 +1,48 @@
+# Taranacak sanatçılar:  Ad | Deezer sanatçı ID
+# ID, aynı adlı başka sanatçılarla karışmasın diye sabitlendi.
+# '#' ile başlayan satırlar yok sayılır.
+
+# --- New school ---
+Bege | 51733582
+Wegh | 7720944
+Lvbel C5 | 72272502
+Ati242 | 49096741
+Murda | 389038
+Uzi | 98336572
+Motive | 72196
+Blok3 | 117259882
+Batuflex | 57198872
+Reckol | 89962212
+Heijan | 11968811
+Era7capone | 159235292
+Sefo | 5331963
+Lil Zey | 66576122
+Güneş | 4233013
+Yung Ouzo | 14376919
+EGE! | 109758572
+Çakal | 1550629
+
+# --- Eski / orta kuşak ---
+Ceza | 14546
+Sagopa Kajmer | 12934
+Ezhel | 8354140
+Ben Fero | 14414849
+Şehinşah | 10003428
+Norm Ender | 11818971
+Gazapizm | 5241985
+Khontkar | 5680356
+Contra | 116116
+Killa Hakan | 4096815
+Mero | 54647592
+Taladro | 8720682
+
+# --- Sınırdakiler ---
+Patron | 575796
+Joker | 143771
+No.1 | 8283402
+Hidra | 481216
+Allame | 4865554
+Burak King | 9076356
+
+# --- Belirsiz: Deezer'da birden çok "Mavi" var, hangisi olduğu netleşmedi ---
+# Mavi
